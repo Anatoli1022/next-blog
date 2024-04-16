@@ -1,7 +1,7 @@
 import { supabase } from "@/lib/supabase/server";
 import { NextApiResponse, NextApiRequest } from "next";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function POST(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     try {
       const body = req.body ? JSON.parse(req.body) : {};
