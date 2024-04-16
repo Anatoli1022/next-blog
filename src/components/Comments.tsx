@@ -4,12 +4,26 @@
 // import { Heading } from "./Heading";
 import { useState } from 'react';
 
-export function Comments({ id, uid, comments }) {
+interface Comment {
+  created_at: string;
+  id: number;
+  nickname: string;
+  payload: string;
+  post_id: string;
+  published: boolean;
+}
+interface CommentsProps {
+  id: string;
+  uid: string;
+  comments: Comment[] | null;
+}
+
+export function Comments({ id, uid, comments }: CommentsProps) {
   const [comment, setComment] = useState('');
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
   const [loading, setLoading] = useState(false);
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
@@ -25,7 +39,7 @@ export function Comments({ id, uid, comments }) {
         comment,
         uid,
       }),
-    }).then((data) => {
+    }).then((data: any) => {
       if (data.error) {
         console.error(data.error);
       } else {
@@ -36,6 +50,7 @@ export function Comments({ id, uid, comments }) {
       }
     });
   };
+  console.log(`id`, id, uid, `uuid`);
 
   return (
     // <Bounded>
@@ -44,10 +59,10 @@ export function Comments({ id, uid, comments }) {
     //   </Heading>{comments.length > 0 && (
 
     <div>
-      {comments.length > 0 && (
+      {comments && comments.length > 0 && (
         <>
           <h4 className="mt-12">What people are saying</h4>
-          {comments.map((comment, index) => (
+          {comments.map((comment: Comment, index: number) => (
             <div className="p-6 border my-4" key={index}>
               <header className="text-sm">
                 {`Posted by ${comment.nickname} on ${new Date(

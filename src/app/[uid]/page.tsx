@@ -53,18 +53,18 @@ export default async function Page({ params }: { params: Params }) {
     limit: 2,
   });
 
-  // const comments = await supabase
-  //   .from('comments')
-  //   .select('post_id, nickname, payload, created_at, id, published, email')
-  //   .eq('post_id', page.id)
-  //   .order('created_at', { ascending: true });
-
   const comments = await supabase
     .from('comments')
     .select('post_id, nickname, payload, created_at, id, published, email')
     .eq('post_id', page.id)
-    .eq('published', true) // only fetch published comments
     .order('created_at', { ascending: true });
+
+  // const comments = await supabase
+  //   .from('comments')
+  //   .select('post_id, nickname, payload, created_at, id, published, email')
+  //   .eq('post_id', page.id)
+  //   .eq('published', true) // only fetch published comments
+  //   .order('created_at', { ascending: true });
 
   const { slices, title, publication_date, description, featured_image } =
     page.data;
