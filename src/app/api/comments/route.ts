@@ -1,9 +1,9 @@
-// src/app/api/comments/submit/route.tsx
+
 
 import { supabase } from "@/lib/supabase/server";
 import { NextApiResponse, NextApiRequest } from "next";
 
-export default async function POST(req: NextApiRequest, res: NextApiResponse) {
+ async function POST(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     try {
       const body = JSON.parse(req.body || '{}');
@@ -32,3 +32,6 @@ export default async function POST(req: NextApiRequest, res: NextApiResponse) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 }
+
+
+
