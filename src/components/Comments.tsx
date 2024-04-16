@@ -27,7 +27,7 @@ export function Comments({ id, uid, comments }: CommentsProps) {
     e.preventDefault();
     setLoading(true);
 
-    await fetch(`/api/comments/submit`, {
+    await fetch(`/api/comments`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
