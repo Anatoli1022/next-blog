@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-
 import { SliceZone } from '@prismicio/react';
 import * as prismic from '@prismicio/client';
 import { createClient } from '@/prismicio';
@@ -11,6 +10,10 @@ import { RichText } from '@/components/RichText';
 import { Navigation } from '@/components/Navigation';
 import { Comments } from '@/components/Comments';
 import { supabase } from '@/lib/supabase/server';
+import { CommentForm } from '@/components/CommentForm';
+import { cookies } from 'next/headers';
+
+
 type Params = { uid: string };
 
 export async function generateMetadata({
@@ -38,6 +41,9 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params }: { params: Params }) {
+  cookies();
+  
+
   const client = createClient();
 
   const page = await client
@@ -95,7 +101,8 @@ export default async function Page({ params }: { params: Params }) {
       </section>
 
       <SliceZone slices={slices} components={components} />
-      <Comments id={page.id} uid={page.uid} comments={comments.data} />
+      <Comments comments={comments.data} />
+      <CommentForm id={page.id} uid={page.uid} />
 
       <h2 className="font-bold text-3xl">Recommended Posts</h2>
       <section className="grid grid-cols-1 gap-8 max-w-3xl w-full">
