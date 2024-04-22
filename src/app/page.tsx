@@ -1,5 +1,3 @@
-
-
 import { Metadata } from 'next';
 
 import { SliceZone } from '@prismicio/react';
@@ -9,7 +7,6 @@ import { createClient } from '@/prismicio';
 import { components } from '@/slices';
 import { PostCard } from '@/components/PostCard';
 import { Navigation } from '@/components/Navigation';
-
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -30,18 +27,22 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Index() {
-  
   const client = createClient();
 
-  
-  const home = await client.getByUID('page', 'home');
+  const home = await client.getByUID('page', 'home', {
+    fetchOptions: {
+      next: { revalidate: 0 },
+    },
+  });
 
-  
   const posts = await client.getAllByType('blog_post', {
     orderings: [
       { field: 'my.blog_post.publication_date', direction: 'desc' },
       { field: 'document.first_publication_date', direction: 'desc' },
     ],
+    fetchOptions: {
+      next: { revalidate: 0 },
+    },
   });
 
   return (
