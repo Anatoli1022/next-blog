@@ -1,10 +1,13 @@
 'use client';
 import { useState } from 'react';
+
 interface CommentsProps {
   id: string;
   uid: string;
+  revalidate: (val: string) => void;
+  text?: string;
 }
-export function CommentForm({ id, uid, }: CommentsProps) {
+export function CommentForm({ id, uid, revalidate }: CommentsProps) {
   const [comment, setComment] = useState('');
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
@@ -13,6 +16,7 @@ export function CommentForm({ id, uid, }: CommentsProps) {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    revalidate(`/${uid}`);
 
     await fetch(`/api/comments`, {
       method: 'POST',
