@@ -135,12 +135,12 @@ export default async function Page({ params }: { params: Params }) {
   );
 }
 
-// export async function generateStaticParams() {
-//   const client = createClient();
+export async function generateStaticParams() {
+  const client = createClient();
 
-//   const pages = await client.getAllByType('blog_post');
+  const pages = await client.getAllByType('blog_post');
 
-//   return pages.map((page) => {
-//     return { uid: page.uid };
-//   });
-// }
+  return pages.map((page) => {
+    return { uid: page.uid };
+  });
+}
