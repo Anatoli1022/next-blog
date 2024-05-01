@@ -6,11 +6,10 @@ interface CommentsProps {
   uid: string;
   revalidate: (val: string) => void;
   text?: string;
+  user: string | undefined;
 }
-export function CommentForm({ id, uid, revalidate }: CommentsProps) {
+export function CommentForm({ id, uid, revalidate, user }: CommentsProps) {
   const [comment, setComment] = useState('');
-  const [email, setEmail] = useState('');
-  const [nickname, setNickname] = useState('');
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -18,28 +17,29 @@ export function CommentForm({ id, uid, revalidate }: CommentsProps) {
     setLoading(true);
     revalidate(`/${uid}`);
 
-    await fetch(`/api/comments`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        post_id: id,
-        nickname,
-        email,
-        comment,
-        uid,
-      }),
-    }).then((data: any) => {
-      if (data.error) {
-        console.error(data.error);
-      } else {
-        setLoading(false);
-        setComment('');
-        setEmail('');
-        setNickname('');
-      }
-    });
+    if (user) {
+      await fetch(`/api/comments`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          post_id: id,
+          nickname: user,
+          email: user,
+          comment,
+          uid,
+        }),
+      }).then((data: any) => {
+        if (data.error) {
+          console.error(data.error);
+        } else {
+          setLoading(false);
+          setComment('');
+        }
+      });
+    } else {
+    }
   };
 
   return (
@@ -56,32 +56,7 @@ export function CommentForm({ id, uid, revalidate }: CommentsProps) {
           value={comment}
         />
       </div>
-      <div>
-        <label htmlFor="email" className="mb-2 mt-6 text-lg block">
-          Email
-        </label>
-        <input
-          id="email"
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-          placeholder="Your email"
-          className="w-full border p-4"
-          value={email}
-        />
-      </div>
-      <div>
-        <label htmlFor="nickname" className="mb-2 mt-6 text-lg block">
-          Nickname
-        </label>
-        <input
-          id="nickname"
-          onChange={(e) => setNickname(e.target.value)}
-          type="text"
-          placeholder="Your nickname"
-          className="w-full border p-4"
-          value={nickname}
-        />
-      </div>
+
       <button
         className="p-4 bg-slate-700 text-white mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
         type="submit"
