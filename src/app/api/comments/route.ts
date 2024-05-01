@@ -1,5 +1,5 @@
 
-import { supabase } from '@/lib/supabase/server';
+import { createClientComments } from '@/lib/supabase/client';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: any) {
@@ -7,6 +7,8 @@ export async function POST(req: any) {
 
   const { post_id, email, comment, nickname, uid } = body;
 
+
+  const supabase = createClientComments();
   const { data, error } = await supabase
     .from('comments')
     .insert({
