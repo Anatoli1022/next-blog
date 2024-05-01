@@ -1,12 +1,10 @@
 import { Metadata } from 'next';
-
 import { SliceZone } from '@prismicio/react';
 import * as prismic from '@prismicio/client';
-
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
 import { PostCard } from '@/components/PostCard';
-import { Navigation } from '@/components/Navigation';
+
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -47,7 +45,7 @@ export default async function Index() {
 
   return (
     <>
-      <Navigation client={client} />
+      
 
       <SliceZone slices={home.data.slices} components={components} />
 
