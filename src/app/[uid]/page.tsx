@@ -1,3 +1,4 @@
+'use server';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { SliceZone } from '@prismicio/react';
@@ -7,12 +8,13 @@ import { components } from '@/slices';
 import { PrismicNextImage } from '@prismicio/next';
 import { PostCard } from '@/components/PostCard';
 import { RichText } from '@/components/RichText';
-import { Navigation } from '@/components/Navigation';
 import { Comments } from '@/components/Comments';
-import { supabase } from '@/lib/supabase/server';
+// import { supabaseComments } from '@/lib/supabase/client';
+import { createClientComments } from '@/lib/supabase/client';
 import { CommentForm } from '@/components/CommentForm';
-import { cookies } from 'next/headers';
-
+// import { cookies } from 'next/headers';
+import { revalidatePath } from 'next/cache';
+import { createClientUser } from '@/lib/supabase/server';
 
 type Params = { uid: string };
 
@@ -41,8 +43,12 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params }: { params: Params }) {
-  cookies();
-  
+  // cookies();
+
+  const revalidate = (url: string) => {
+    'use server';
+    revalidatePath(url, 'page');
+  };
 
   const client = createClient();
 
@@ -56,14 +62,22 @@ export default async function Page({ params }: { params: Params }) {
       { field: 'my.blog_post.publication_date', direction: 'desc' },
       { field: 'document.first_publication_date', direction: 'desc' },
     ],
-    limit: 2,
+    limit: 1,
   });
 
+  // const comments = await supabaseComments
+  const supabase = createClientComments();
   const comments = await supabase
     .from('comments')
     .select('post_id, nickname, payload, created_at, id, published, email')
     .eq('post_id', page.id)
     .order('created_at', { ascending: true });
+
+  const supabaseUser = createClientUser();
+
+  const {
+    data: { user },
+  } = await supabaseUser.auth.getUser();
 
   // const comments = await supabase
   //   .from('comments')
@@ -77,8 +91,6 @@ export default async function Page({ params }: { params: Params }) {
 
   return (
     <div className="flex flex-col gap-12 w-full max-w-3xl">
-      <Navigation client={client} />
-
       <section className="flex flex-col gap-12">
         <div className="flex flex-col items-center gap-3 w-full">
           <div className="flex flex-col gap-6 items-center">
@@ -102,7 +114,16 @@ export default async function Page({ params }: { params: Params }) {
 
       <SliceZone slices={slices} components={components} />
       <Comments comments={comments.data} />
-      <CommentForm id={page.id} uid={page.uid} />
+      {user ? (
+        <CommentForm
+          id={page.id}
+          uid={page.uid}
+          revalidate={revalidate}
+          user={user?.email}
+        />
+      ) : (
+        <p>Login for comment</p>
+      )}
 
       <h2 className="font-bold text-3xl">Recommended Posts</h2>
       <section className="grid grid-cols-1 gap-8 max-w-3xl w-full">
@@ -110,18 +131,16 @@ export default async function Page({ params }: { params: Params }) {
           <PostCard key={post.id} post={post} />
         ))}
       </section>
-
-      <Navigation client={client} />
     </div>
   );
 }
 
-export async function generateStaticParams() {
-  const client = createClient();
+// export async function generateStaticParams() {
+//   const client = createClient();
 
-  const pages = await client.getAllByType('blog_post');
+//   const pages = await client.getAllByType('blog_post');
 
-  return pages.map((page) => {
-    return { uid: page.uid };
-  });
-}
+//   return pages.map((page) => {
+//     return { uid: page.uid };
+//   });
+// }
