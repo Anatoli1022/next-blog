@@ -1,5 +1,5 @@
-'use client';
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
 
 interface CommentsProps {
   id: string;
@@ -9,7 +9,7 @@ interface CommentsProps {
   user: string | undefined;
 }
 export function CommentForm({ id, uid, revalidate, user }: CommentsProps) {
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -19,9 +19,9 @@ export function CommentForm({ id, uid, revalidate, user }: CommentsProps) {
 
     if (user) {
       await fetch(`/api/comments`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           post_id: id,
@@ -35,7 +35,7 @@ export function CommentForm({ id, uid, revalidate, user }: CommentsProps) {
           console.error(data.error);
         } else {
           setLoading(false);
-          setComment('');
+          setComment("");
         }
       });
     } else {
@@ -48,21 +48,22 @@ export function CommentForm({ id, uid, revalidate, user }: CommentsProps) {
         <label htmlFor="comment" className="mb-2 mt-6 text-lg block">
           Comment
         </label>
-        <textarea
+
+        <input
           id="comment"
           onChange={(e) => setComment(e.target.value)}
           placeholder="Your comment"
-          className="w-full border p-4"
+          className="w-full border p-2 rounded-lg"
           value={comment}
         />
       </div>
 
       <button
-        className="p-4 bg-slate-700 text-white mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="mt-4 font-normal text-lg bg-indigo-400 text-white transition border border-xl rounded-md px-4 py-1 text-foreground hover:text-black hover:bg-inherit disabled:cursor-not-allowed"
         type="submit"
         disabled={loading}
       >
-        {loading ? 'Loading...' : 'Send comment'}
+        {loading ? "Loading..." : "Send comment"}
       </button>
     </form>
   );
