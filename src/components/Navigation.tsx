@@ -1,8 +1,8 @@
 import { isFilled } from "@prismicio/client";
-import { PrismicLink } from "@prismicio/react";
+
 import { createClient } from "@/prismicio";
 import { createClientUser } from "@/lib/supabase/server";
-
+import { PrismicNextLink } from "@prismicio/next";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
@@ -24,7 +24,7 @@ export const Navigation = async () => {
   };
 
   return (
-    <header className="py-5 ">
+    <header className="py-5 px-2">
       <div className="flex justify-between items-center">
         <nav>
           <ul className="flex gap-x-6">
@@ -32,15 +32,12 @@ export const Navigation = async () => {
               navigation.data.menu_items.map((item) => {
                 return (
                   <li key={item.label}>
-                    {/* <PrismicLink
+                    <PrismicNextLink
                       field={item.link}
-                      className="font-bold text-xl "
+                      className="font-normal text-lg text-black hover:text-indigo-400 transition"
                     >
                       {item.label}
-                    </PrismicLink> */}
-                    <Link href={`/`} className="font-normal text-lg">
-                      {item.label}
-                    </Link>
+                    </PrismicNextLink>
                   </li>
                 );
               })}
@@ -49,7 +46,7 @@ export const Navigation = async () => {
 
         {user ? (
           <div className="flex">
-            <div className="flex items-center mr-4">Hey, {user.email}!</div>
+            <div className="flex items-center mr-4 ">Hey, {user.email}!</div>
             <form action={signOut}>
               <button className="font-normal text-lg bg-indigo-400 text-white transition border border-xl rounded-md px-4 py-1 text-foreground hover:text-black hover:bg-inherit ">
                 <span>Logout</span>
