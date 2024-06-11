@@ -1,5 +1,6 @@
 import { PrismicNextImage } from "@prismicio/next";
-import { PrismicLink, PrismicText } from "@prismicio/react";
+import { PrismicText } from "@prismicio/react";
+import { PrismicNextLink } from "@prismicio/next";
 import { RichText } from "./RichText";
 import { Content } from "@prismicio/client";
 
@@ -11,7 +12,7 @@ export const PostCard = ({
   const { data } = post;
 
   return (
-    <PrismicLink
+    <PrismicNextLink
       document={post}
       className="grid grid-cols-2 gap-10 border-b border-solid border-gray-200 w-full col-span-2 last:border-none"
     >
@@ -19,6 +20,7 @@ export const PostCard = ({
         field={data.featured_image}
         sizes="100vw"
         className="w-full max-w-sm max-h-60 rounded-xl object-cover"
+        fallbackAlt=""
       />
       <div className="flex flex-col gap-3 ">
         <div className="flex flex-col gap-1">
@@ -45,6 +47,6 @@ export const PostCard = ({
         </div>
         <RichText field={data.description} />
       </div>
-    </PrismicLink>
+    </PrismicNextLink>
   );
 };
