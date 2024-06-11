@@ -43,9 +43,9 @@ export function CommentForm({ id, uid, revalidate, user }: CommentsProps) {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="mt-6">
       <div>
-        <label htmlFor="comment" className="mb-2 mt-6 text-lg block">
+        <label htmlFor="comment" className=" text-lg block">
           Comment
         </label>
 
@@ -53,11 +53,10 @@ export function CommentForm({ id, uid, revalidate, user }: CommentsProps) {
           id="comment"
           onChange={(e) => setComment(e.target.value)}
           placeholder="Your comment"
-          className="w-full border p-2 rounded-lg"
+          className="w-full border p-2 rounded-lg mt-2"
           value={comment}
         />
       </div>
-
       <button
         className="mt-4 font-normal text-lg bg-indigo-400 text-white transition border border-xl rounded-md px-4 py-1 text-foreground hover:text-black hover:bg-inherit disabled:cursor-not-allowed"
         type="submit"

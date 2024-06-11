@@ -1,7 +1,7 @@
-import { PrismicPreview } from '@prismicio/next';
-import { repositoryName } from '@/prismicio';
-import './styles.css';
-import { Navigation } from '@/components/Navigation';
+import { PrismicPreview } from "@prismicio/next";
+import { repositoryName } from "@/prismicio";
+import "./styles.css";
+import { Navigation } from "@/components/Navigation";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -19,7 +19,7 @@ export default function RootLayout({
       </head>
       <body className="max-w-screen-xl ml-auto mr-auto bg-gray-50">
         <Navigation />
-        <div className=" max-w-7xl min-h-screen p-12 w-full flex flex-col gap-20 items-center text-slate-700">
+        <div className="max-w-7xl min-h-screen px-2 w-full flex flex-col gap-20 items-center text-slate-700">
           {children} <PrismicPreview repositoryName={repositoryName} />
         </div>
       </body>
