@@ -1,11 +1,9 @@
-import { Content } from '@prismicio/client';
-import { SliceComponentProps, PrismicText } from '@prismicio/react';
-import { RichText } from '@/components/RichText';
-import { PrismicNextImage } from '@prismicio/next';
-
+import { Content } from "@prismicio/client";
+import { SliceComponentProps, PrismicText } from "@prismicio/react";
+import { RichText } from "@/components/RichText";
+import { PrismicNextImage } from "@prismicio/next";
 
 export type HeroProps = SliceComponentProps<Content.HeroSlice>;
-
 
 const Hero = ({ slice }: HeroProps): JSX.Element => {
   return (
@@ -19,10 +17,9 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
         sizes="100vw"
         className="w-full max-w-[100px] max-h-full rounded-md object-cover"
       />
-      <div className="flex flex-col gap-2">
-        <h1 className="font-bold text-4xl">
-          <PrismicText field={slice.primary.title} />
-        </h1>
+      <div>
+        <RichText field={slice.primary.title} />
+
         <RichText field={slice.primary.description} />
       </div>
     </section>
