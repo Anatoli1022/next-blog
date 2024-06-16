@@ -20,6 +20,8 @@ export const PostCard = ({
         field={data.featured_image}
         sizes="100vw"
         className="w-full max-w-sm max-h-60 rounded-xl object-cover"
+        width={364}
+        height={240}
         fallbackAlt=""
       />
       <div className="flex flex-col gap-3 ">
@@ -27,7 +29,7 @@ export const PostCard = ({
           <p className="text-sm opacity-75 text-slate-700 border-b-2 w-min pb-1">
             {new Date(data?.publication_date || "").toLocaleDateString()}
           </p>
-          <ul className="flex gap-x-1 mt-2">
+          <ul className="flex gap-2  mt-2 flex-wrap">
             {post.tags.map((item, i) => {
               return (
                 <li

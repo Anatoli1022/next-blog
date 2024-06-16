@@ -5,7 +5,7 @@ import { SliceZone } from "@prismicio/react";
 import * as prismic from "@prismicio/client";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
-import { PrismicNextImage } from "@prismicio/next";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { RichText } from "@/components/RichText";
 import { Comments } from "@/components/Comments";
 // import { supabaseComments } from '@/lib/supabase/client';
@@ -75,8 +75,9 @@ export default async function Page({ params }: { params: Params }) {
   //   .eq('published', true) // only fetch published comments
   //   .order('created_at', { ascending: true });
 
-  const { slices, title, publication_date, description, featured_image } =
+  const { slices, title, publication_date, description, featured_image,link_project ,link_git} =
     page.data;
+   
 
   return (
     <div className="flex flex-col gap-16 w-full max-w-3xl">
@@ -90,15 +91,27 @@ export default async function Page({ params }: { params: Params }) {
             <div className="mt-5 mb-3">
               <RichText field={title} />
             </div>
-            <RichText field={description} />
+           
           </div>
         </div>
         <PrismicNextImage
           field={featured_image}
           sizes="100vw"
-          className="w-full max-w-3xl max-h-96 rounded-xl object-cover"
+          className="w-full max-w-3xl max-h-[450px] rounded-xl object-cover"
           fallbackAlt=""
+          width={768}
+          height={384}
         />
+         <RichText field={description} />
+       <div>
+       <div>
+        <PrismicNextLink field={link_project}  className=" text-lg font-semibold hover:text-indigo-400 transition">{link_project.url}</PrismicNextLink>
+         </div>
+    
+     <div>
+     <PrismicNextLink field={link_git}  className="text-lg font-semibold hover:text-indigo-400 transition">{link_git.url}</PrismicNextLink>
+     </div>
+       </div>
       </section>
 
       <SliceZone slices={slices} components={components} />
