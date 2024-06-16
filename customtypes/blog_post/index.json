@@ -45,6 +45,22 @@
           "placeholder": ""
         }
       },
+      "link_project": {
+        "type": "Link",
+        "config": {
+          "label": "link_project",
+          "placeholder": "",
+          "select": null
+        }
+      },
+      "link_git": {
+        "type": "Link",
+        "config": {
+          "label": "link_git",
+          "placeholder": "",
+          "select": null
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

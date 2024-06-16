@@ -19,7 +19,6 @@
     "@prismicio/react": "^2.7.3",
     "@supabase/ssr": "^0.3.0",
     "@supabase/supabase-js": "^2.42.4",
-    "framer-motion": "^11.2.6",
     "next": "^14.2.3",
     "prettier-plugin-tailwindcss": "^0.6.3",
     "react": "^18.2.0",

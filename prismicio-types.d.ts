@@ -55,6 +55,28 @@ interface BlogPostDocumentData {
   publication_date: prismic.DateField;
 
   /**
+   * link_project field in *Blog post*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.link_project
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link_project: prismic.LinkField;
+
+  /**
+   * link_git field in *Blog post*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.link_git
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link_git: prismic.LinkField;
+
+  /**
    * Slice Zone field in *Blog post*
    *
    * - **Field Type**: Slice Zone
