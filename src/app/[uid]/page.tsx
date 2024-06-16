@@ -109,7 +109,7 @@ export default async function Page({ params }: { params: Params }) {
 
       <SliceZone slices={slices} components={components} />
       <div>
-        <Comments comments={comments.data} />
+        <Comments comments={comments.data} status={comments.status} />
         {user ? (
           <CommentForm id={page.id} uid={page.uid} revalidate={revalidate} user={user?.email} />
         ) : (

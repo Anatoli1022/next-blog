@@ -8,12 +8,13 @@ interface Comment {
 }
 interface CommentsProps {
   comments: Comment[] | null;
+  status: number;
 }
 
-export function Comments({ comments }: CommentsProps) {
+export function Comments({ comments, status }: CommentsProps) {
   return (
     <div>
-      {comments && comments.length > 0 && (
+      {comments && status === 200 && comments.length > 0 ? (
         <>
           <h4 className='text-lg'>What people are saying</h4>
           {comments.map((comment: Comment, index: number) => (
@@ -29,6 +30,8 @@ export function Comments({ comments }: CommentsProps) {
             </div>
           ))}
         </>
+      ) : (
+        <p>There are no comments on this post yet, be the first!</p>
       )}
     </div>
   );
