@@ -8,18 +8,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <head>
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="any"
-          href="https://prismic.io/favicon.ico"
-        />
+        <link rel='icon' type='image/png' sizes='any' href='https://prismic.io/favicon.ico' />
       </head>
-      <body className="max-w-screen-xl ml-auto mr-auto bg-gray-50">
+      <body className='ml-auto mr-auto max-w-screen-xl bg-gray-50'>
         <Navigation />
-        <div className="max-w-7xl min-h-screen px-2 w-full flex flex-col gap-20 items-center text-slate-700">
+        <div className='flex min-h-screen w-full max-w-7xl flex-col items-center gap-20 px-2 text-slate-700'>
           {children} <PrismicPreview repositoryName={repositoryName} />
         </div>
       </body>

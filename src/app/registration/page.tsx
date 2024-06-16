@@ -28,11 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function Index({
-  searchParams,
-}: {
-  searchParams: { message: string };
-}) {
+export default async function Index({ searchParams }: { searchParams: { message: string } }) {
   const client = createClient();
 
   const registration = await client.getByUID("page", "registration", {
@@ -55,7 +51,9 @@ export default async function Index({
     });
 
     if (error) {
-      return redirect(`/registration?message=${encodeURIComponent("Sign-in failed. Please check your credentials and try again.")}`);
+      return redirect(
+        `/registration?message=${encodeURIComponent("Sign-in failed. Please check your credentials and try again.")}`,
+      );
     }
 
     return redirect("/");
@@ -88,46 +86,42 @@ export default async function Index({
     <>
       <SliceZone slices={registration.data.slices} components={components} />
 
-      <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
-        <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
-          <label className="text-md" htmlFor="email">
+      <div className='flex w-full flex-1 flex-col justify-center gap-2 px-8 sm:max-w-md'>
+        <form className='animate-in text-foreground flex w-full flex-1 flex-col justify-center gap-2'>
+          <label className='text-md' htmlFor='email'>
             Email
           </label>
           <input
-            className="rounded-md px-4 py-2 bg-inherit border mb-6"
-            name="email"
-            placeholder="you@example.com"
+            className='mb-6 rounded-md border bg-inherit px-4 py-2'
+            name='email'
+            placeholder='you@example.com'
             required
           />
-          <label className="text-md" htmlFor="password">
+          <label className='text-md' htmlFor='password'>
             Password
           </label>
           <input
-            className="rounded-md px-4 py-2 bg-inherit border mb-6"
-            type="password"
-            name="password"
-            placeholder="••••••••"
+            className='mb-6 rounded-md border bg-inherit px-4 py-2'
+            type='password'
+            name='password'
+            placeholder='••••••••'
             required
           />
           <SubmitButton
             formAction={signIn}
-            className="bg-indigo-400 rounded-md px-4 py-2 text-foreground mb-2 text-white hover:text-black hover:bg-inherit border transition"
-            pendingText="Signing In..."
+            className='text-foreground mb-2 rounded-md border bg-indigo-400 px-4 py-2 text-white transition hover:bg-inherit hover:text-black'
+            pendingText='Signing In...'
           >
             Sign In
           </SubmitButton>
           <SubmitButton
             formAction={signUp}
-            className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 hover:bg-indigo-400 hover:text-white transition"
-            pendingText="Signing Up..."
+            className='border-foreground/20 text-foreground mb-2 rounded-md border px-4 py-2 transition hover:bg-indigo-400 hover:text-white'
+            pendingText='Signing Up...'
           >
             Sign Up
           </SubmitButton>
-          {searchParams?.message && (
-            <p className="text-red-600  text-center">
-              {searchParams.message}
-            </p>
-          )}
+          {searchParams?.message && <p className='text-center text-red-600'>{searchParams.message}</p>}
         </form>
       </div>
     </>

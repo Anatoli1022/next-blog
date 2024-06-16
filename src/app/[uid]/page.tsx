@@ -18,15 +18,9 @@ import Link from "next/link";
 
 type Params = { uid: string };
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Params;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const client = createClient();
-  const page = await client
-    .getByUID("blog_post", params.uid)
-    .catch(() => notFound());
+  const page = await client.getByUID("blog_post", params.uid).catch(() => notFound());
 
   return {
     title: prismic.asText(page.data.title),
@@ -50,9 +44,7 @@ export default async function Page({ params }: { params: Params }) {
 
   const client = createClient();
 
-  const page = await client
-    .getByUID("blog_post", params.uid)
-    .catch(() => notFound());
+  const page = await client.getByUID("blog_post", params.uid).catch(() => notFound());
 
   // const comments = await supabaseComments
   const supabase = createClientComments();
@@ -75,61 +67,54 @@ export default async function Page({ params }: { params: Params }) {
   //   .eq('published', true) // only fetch published comments
   //   .order('created_at', { ascending: true });
 
-  const { slices, title, publication_date, description, featured_image,link_project ,link_git} =
-    page.data;
-   
+  const { slices, title, publication_date, description, featured_image, link_project, link_git } = page.data;
 
   return (
-    <div className="flex flex-col gap-16 w-full max-w-3xl">
-      <section className="flex flex-col gap-12">
+    <div className='flex w-full max-w-3xl flex-col gap-16'>
+      <section className='flex flex-col gap-12'>
         <div>
-          <div className="text-center">
-            <p className="opacity-75 border-b-2 w-min pb-1 m-auto">
+          <div className='text-center'>
+            <p className='m-auto w-min border-b-2 pb-1 opacity-75'>
               {new Date(publication_date || "").toLocaleDateString()}
             </p>
 
-            <div className="mt-5 mb-3">
+            <div className='mb-3 mt-5'>
               <RichText field={title} />
             </div>
-           
           </div>
         </div>
         <PrismicNextImage
           field={featured_image}
-          sizes="100vw"
-          className="w-full max-w-3xl max-h-[450px] rounded-xl object-cover"
-          fallbackAlt=""
+          sizes='100vw'
+          className='max-h-[450px] w-full max-w-3xl rounded-xl object-cover'
+          fallbackAlt=''
           width={768}
           height={384}
         />
-         <RichText field={description} />
-       <div>
-       <div>
-        <PrismicNextLink field={link_project}  className=" text-lg font-semibold hover:text-indigo-400 transition">{link_project.url}</PrismicNextLink>
-         </div>
-    
-     <div>
-     <PrismicNextLink field={link_git}  className="text-lg font-semibold hover:text-indigo-400 transition">{link_git.url}</PrismicNextLink>
-     </div>
-       </div>
+        <RichText field={description} />
+        <div>
+          <div>
+            <PrismicNextLink field={link_project} className='text-lg font-semibold transition hover:text-indigo-400'>
+              Link to the website
+            </PrismicNextLink>
+          </div>
+
+          <div>
+            <PrismicNextLink field={link_git} className='text-lg font-semibold transition hover:text-indigo-400'>
+              Link to the project in git
+            </PrismicNextLink>
+          </div>
+        </div>
       </section>
 
       <SliceZone slices={slices} components={components} />
       <div>
         <Comments comments={comments.data} />
         {user ? (
-          <CommentForm
-            id={page.id}
-            uid={page.uid}
-            revalidate={revalidate}
-            user={user?.email}
-          />
+          <CommentForm id={page.id} uid={page.uid} revalidate={revalidate} user={user?.email} />
         ) : (
-          <div className="mt-4">
-            <Link
-              href="registration"
-              className="text-lg font-semibold hover:text-indigo-400 transition"
-            >
+          <div className='mt-4'>
+            <Link href='registration' className='text-lg font-semibold transition hover:text-indigo-400'>
               Please Login for comment
             </Link>
           </div>
@@ -137,7 +122,7 @@ export default async function Page({ params }: { params: Params }) {
       </div>
 
       <div>
-        <h2 className="font-bold text-3xl">Recommended Posts</h2>
+        <h2 className='text-3xl font-bold'>Recommended Posts</h2>
         <PostList />
       </div>
     </div>

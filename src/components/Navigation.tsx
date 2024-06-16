@@ -24,17 +24,17 @@ export const Navigation = async () => {
   };
 
   return (
-    <header className="py-5 px-2">
-      <div className="flex justify-between items-center">
+    <header className='px-2 py-5'>
+      <div className='flex items-center justify-between'>
         <nav>
-          <ul className="flex gap-x-6">
+          <ul className='flex gap-x-6'>
             {isFilled.group(navigation.data.menu_items) &&
               navigation.data.menu_items.map((item) => {
                 return (
                   <li key={item.label}>
                     <PrismicNextLink
                       field={item.link}
-                      className="font-normal text-lg text-black hover:text-indigo-400 transition"
+                      className='text-lg font-normal text-black transition hover:text-indigo-400'
                     >
                       {item.label}
                     </PrismicNextLink>
@@ -45,18 +45,18 @@ export const Navigation = async () => {
         </nav>
 
         {user ? (
-          <div className="flex">
-            <div className="flex items-center mr-4 ">Hey, {user.email}!</div>
+          <div className='flex'>
+            <div className='mr-4 flex items-center'>Hey, {user.email}!</div>
             <form action={signOut}>
-              <button className="font-normal text-lg bg-indigo-400 text-white transition border border-xl rounded-md px-4 py-1 text-foreground hover:text-black hover:bg-inherit ">
+              <button className='border-xl text-foreground rounded-md border bg-indigo-400 px-4 py-1 text-lg font-normal text-white transition hover:bg-inherit hover:text-black'>
                 <span>Logout</span>
               </button>
             </form>
           </div>
         ) : (
           <Link
-            href="/registration"
-            className="font-normal text-lg bg-indigo-400 text-white transition border border-xl rounded-md px-4 py-1 text-foreground hover:text-black hover:bg-inherit "
+            href='/registration'
+            className='border-xl text-foreground rounded-md border bg-indigo-400 px-4 py-1 text-lg font-normal text-white transition hover:bg-inherit hover:text-black'
           >
             Login
           </Link>

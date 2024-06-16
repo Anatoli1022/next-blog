@@ -7,11 +7,9 @@ export const richTextComponents: JSXMapSerializer = {
       return <code>{children}</code>;
     }
   },
-  heading1: ({ children }) => (
-    <h1 className="font-bold text-4xl">{children}</h1>
-  ),
-  heading2: ({ children }) => <h2 className="font-bold text-xl">{children}</h2>,
-  heading3: ({ children }) => <h3 className="font-bold text-lg">{children}</h3>,
+  heading1: ({ children }) => <h1 className='text-4xl font-bold'>{children}</h1>,
+  heading2: ({ children }) => <h2 className='text-xl font-bold'>{children}</h2>,
+  heading3: ({ children }) => <h3 className='text-lg font-bold'>{children}</h3>,
 };
 
 interface RichTextProps {
