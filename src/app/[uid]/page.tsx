@@ -109,9 +109,11 @@ export default async function Page({ params }: { params: Params }) {
 
       <SliceZone slices={slices} components={components} />
       <div>
-        <Comments comments={comments.data} status={comments.status} />
         {user ? (
-          <CommentForm id={page.id} uid={page.uid} revalidate={revalidate} user={user?.email} />
+          <>
+            <Comments comments={comments.data} />
+            <CommentForm id={page.id} uid={page.uid} revalidate={revalidate} user={user?.email} />
+          </>
         ) : (
           <div className='mt-4'>
             <Link href='registration' className='text-lg font-semibold transition hover:text-indigo-400'>
