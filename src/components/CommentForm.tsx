@@ -15,7 +15,7 @@ export function CommentForm({ id, uid, revalidate, user }: CommentsProps) {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    revalidate(`/${uid}`);
+    revalidate(`https://next-blog-ruby-eight.vercel.app/${uid}`);
 
     if (user) {
       await fetch(`/api/comments`, {
