@@ -132,7 +132,12 @@ export default async function Page({ params }: { params: Params }) {
 export async function generateStaticParams() {
   const client = createClient();
 
-  const pages = await client.getAllByType("blog_post");
+  const pages = await client.getAllByType("blog_post", {
+    fetchOptions: {
+      cache: "no-store",
+      next: { tags: ["prismic", "blog_posts"] },
+    },
+  });
 
   return pages.map((page) => {
     return { uid: page.uid };
