@@ -1,3 +1,4 @@
+import { createClientComments } from "@/lib/supabase/client";
 interface Comment {
   created_at: string;
   id: number;
@@ -9,14 +10,20 @@ interface Comment {
 interface CommentsProps {
   comments: Comment[] | null;
 }
-
-export function Comments({ comments }: CommentsProps) {
+export const revalidate = 0;
+export async function Comments({ id }: any) {
+  const supabase = createClientComments();
+  const comments = await supabase
+    .from("comments")
+    .select("post_id, nickname, payload, created_at, id, published, email")
+    .eq("post_id", id)
+    .order("created_at", { ascending: true });
   return (
     <div>
-      {comments && comments.length > 0 ? (
+      {comments && comments.data && comments.data.length > 0 ? (
         <>
           <h4 className='text-lg'>What people are saying</h4>
-          {comments.map((comment: Comment, index: number) => (
+          {comments.data.map((comment: Comment, index: number) => (
             <div className='mt-4 border p-6' key={index}>
               <div className='text-sm'>
                 {`Posted by ${comment.nickname} on ${new Date(comment.created_at).toLocaleTimeString("en-US", {
@@ -29,7 +36,7 @@ export function Comments({ comments }: CommentsProps) {
             </div>
           ))}
         </>
-      ): (
+      ) : (
         <p>There are no comments on this post yet, be the first!</p>
       )}
     </div>

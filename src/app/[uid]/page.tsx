@@ -9,7 +9,7 @@ import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { RichText } from "@/components/RichText";
 import { Comments } from "@/components/Comments";
 // import { supabaseComments } from '@/lib/supabase/client';
-import { createClientComments } from "@/lib/supabase/client";
+
 import { CommentForm } from "@/components/CommentForm";
 import { revalidatePath } from "next/cache";
 import { createClientUser } from "@/lib/supabase/server";
@@ -47,12 +47,7 @@ export default async function Page({ params }: { params: Params }) {
   const page = await client.getByUID("blog_post", params.uid).catch(() => notFound());
 
   // const comments = await supabaseComments
-  const supabase = createClientComments();
-  const comments = await supabase
-    .from("comments")
-    .select("post_id, nickname, payload, created_at, id, published, email")
-    .eq("post_id", page.id)
-    .order("created_at", { ascending: true });
+
 
   const supabaseUser = createClientUser();
 
@@ -109,7 +104,7 @@ export default async function Page({ params }: { params: Params }) {
 
       <SliceZone slices={slices} components={components} />
       <div>
-        <Comments comments={comments.data} />
+        <Comments id={page.id} />
         {user ? (
           <CommentForm id={page.id} uid={page.uid} revalidate={revalidate} user={user?.email} />
         ) : (
@@ -132,12 +127,7 @@ export default async function Page({ params }: { params: Params }) {
 export async function generateStaticParams() {
   const client = createClient();
 
-  const pages = await client.getAllByType("blog_post", {
-    fetchOptions: {
-      cache: "no-store",
-      next: { tags: ["prismic", "blog_posts"] },
-    },
-  });
+  const pages = await client.getAllByType("blog_post");
 
   return pages.map((page) => {
     return { uid: page.uid };
