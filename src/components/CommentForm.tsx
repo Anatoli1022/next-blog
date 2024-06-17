@@ -13,9 +13,9 @@ export function CommentForm({ id, uid, revalidate, user }: CommentsProps) {
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    // e.preventDefault();
+    e.preventDefault();
     setLoading(true);
-    // revalidate(`/${uid}`);
+    revalidate(`/${uid}`);
 
     if (user) {
       await fetch(`/api/comments`, {
