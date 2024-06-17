@@ -1,4 +1,4 @@
-import { createClient } from "@supabase/supabase-js";
+// import { createClient } from "@supabase/supabase-js";
 
 // const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL_COMMENTS || '';
 // const supabaseKey = process.env.SUPABASE_SERVICE_KEY_COMMENTS || '';
@@ -7,12 +7,12 @@ import { createClient } from "@supabase/supabase-js";
 
 // export { supabaseComments };
 
-// import { createBrowserClient } from "@supabase/ssr";
+import { createBrowserClient } from "@supabase/ssr";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL_COMMENTS || "";
 const supabaseKey = process.env.SUPABASE_SERVICE_KEY_COMMENTS || "";
 
-export const createClientComments = () => createClient(supabaseUrl, supabaseKey);
+export const createClientComments = () => createBrowserClient(supabaseUrl, supabaseKey);
 
 // const supabaseUrlUser = process.env.NEXT_PUBLIC_SUPABASE_URL_USERS || '';
 // const supabaseKeyUser = process.env.SUPABASE_SERVICE_KEY_USERS || '';

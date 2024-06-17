@@ -8,10 +8,10 @@ interface Comment {
   published: boolean;
 }
 interface CommentsProps {
-  comments: Comment[] | null;
+  id: string;
 }
 export const revalidate = 0;
-export async function Comments({ id }: any) {
+export async function Comments({ id }: CommentsProps) {
   const supabase = createClientComments();
   const comments = await supabase
     .from("comments")
