@@ -26,8 +26,7 @@ export default async function Index() {
 
   const home = await client.getByUID("page", "home", {
     fetchOptions: {
-      next: { revalidate: 3600 },
-      // next: { revalidate: 0 },
+      next: { revalidate: 0 },
     },
   });
 
