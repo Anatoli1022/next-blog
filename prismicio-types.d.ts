@@ -4,12 +4,58 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Item in *Blog post → List*
+ */
+export interface BlogPostDocumentDataListItem {
+  /**
+   * title field in *Blog post → List*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.list[].title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * text field in *Blog post → List*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.list[].text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * text2 field in *Blog post → List*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.list[].text2
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text2: prismic.RichTextField;
+}
+
 type BlogPostDocumentDataSlicesSlice = RichTextSlice;
 
 /**
  * Content for Blog post documents
  */
 interface BlogPostDocumentData {
+  /**
+   * Publication Date field in *Blog post*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.publication_date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  publication_date: prismic.DateField;
+
   /**
    * Title field in *Blog post*
    *
@@ -20,17 +66,6 @@ interface BlogPostDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.RichTextField;
-
-  /**
-   * Description field in *Blog post*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: blog_post.description
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  description: prismic.RichTextField;
 
   /**
    * Featured Image field in *Blog post*
@@ -44,15 +79,48 @@ interface BlogPostDocumentData {
   featured_image: prismic.ImageField<never>;
 
   /**
-   * Publication Date field in *Blog post*
+   * Description field in *Blog post*
    *
-   * - **Field Type**: Date
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: blog_post.publication_date
+   * - **API ID Path**: blog_post.description
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#date
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  publication_date: prismic.DateField;
+  description: prismic.RichTextField;
+
+  /**
+   * ListTitle field in *Blog post*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.list_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  list_title: prismic.RichTextField;
+
+  /**
+   * List field in *Blog post*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.list[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  list: prismic.GroupField<Simplify<BlogPostDocumentDataListItem>>;
+
+  /**
+   * textResult field in *Blog post*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.text_result
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text_result: prismic.RichTextField;
 
   /**
    * link_project field in *Blog post*
@@ -128,12 +196,11 @@ interface BlogPostDocumentData {
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type BlogPostDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<BlogPostDocumentData>,
-    "blog_post",
-    Lang
-  >;
+export type BlogPostDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<BlogPostDocumentData>,
+  "blog_post",
+  Lang
+>;
 
 /**
  * Item in *Navigation → Menu items*
@@ -185,12 +252,11 @@ interface NavigationDocumentData {
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type NavigationDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<NavigationDocumentData>,
-    "navigation",
-    Lang
-  >;
+export type NavigationDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<NavigationDocumentData>,
+  "navigation",
+  Lang
+>;
 
 type PageDocumentDataSlicesSlice = HeroSlice;
 
@@ -261,13 +327,13 @@ interface PageDocumentData {
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type PageDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
+export type PageDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<PageDocumentData>,
+  "page",
+  Lang
+>;
 
-export type AllDocumentTypes =
-  | BlogPostDocument
-  | NavigationDocument
-  | PageDocument;
+export type AllDocumentTypes = BlogPostDocument | NavigationDocument | PageDocument;
 
 /**
  * Primary content in *Hero → Primary*
@@ -311,11 +377,7 @@ export interface HeroSliceDefaultPrimary {
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type HeroSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<HeroSliceDefaultPrimary>,
-  never
->;
+export type HeroSliceDefault = prismic.SharedSliceVariation<"default", Simplify<HeroSliceDefaultPrimary>, never>;
 
 /**
  * Slice variation for *Hero*
@@ -371,23 +433,18 @@ type RichTextSliceVariation = RichTextSliceDefault;
  * - **Description**: RichText
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type RichTextSlice = prismic.SharedSlice<
-  "rich_text",
-  RichTextSliceVariation
->;
+export type RichTextSlice = prismic.SharedSlice<"rich_text", RichTextSliceVariation>;
 
 declare module "@prismicio/client" {
   interface CreateClient {
-    (
-      repositoryNameOrEndpoint: string,
-      options?: prismic.ClientConfig,
-    ): prismic.Client<AllDocumentTypes>;
+    (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
   }
 
   namespace Content {
     export type {
       BlogPostDocument,
       BlogPostDocumentData,
+      BlogPostDocumentDataListItem,
       BlogPostDocumentDataSlicesSlice,
       NavigationDocument,
       NavigationDocumentData,

@@ -12,6 +12,13 @@
         },
         "type": "UID"
       },
+      "publication_date": {
+        "type": "Date",
+        "config": {
+          "label": "Publication Date",
+          "placeholder": ""
+        }
+      },
       "title": {
         "type": "StructuredText",
         "config": {
@@ -19,6 +26,14 @@
           "placeholder": "",
           "allowTargetBlank": true,
           "multi": "heading1"
+        }
+      },
+      "featured_image": {
+        "type": "Image",
+        "config": {
+          "label": "Featured Image",
+          "constraint": {},
+          "thumbnails": []
         }
       },
       "description": {
@@ -30,19 +45,58 @@
           "multi": "paragraph,strong,em"
         }
       },
-      "featured_image": {
-        "type": "Image",
+      "list_title": {
+        "type": "StructuredText",
         "config": {
-          "label": "Featured Image",
-          "constraint": {},
-          "thumbnails": []
+          "label": "ListTitle",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "heading2"
         }
       },
-      "publication_date": {
-        "type": "Date",
+      "list": {
+        "type": "Group",
         "config": {
-          "label": "Publication Date",
-          "placeholder": ""
+          "label": "List",
+          "repeat": true,
+          "fields": {
+            "title": {
+              "type": "StructuredText",
+              "config": {
+                "label": "title",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "heading3"
+              }
+            },
+            "text": {
+              "type": "StructuredText",
+              "config": {
+                "label": "text",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "paragraph"
+              }
+            },
+            "text2": {
+              "type": "StructuredText",
+              "config": {
+                "label": "text2",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "paragraph"
+              }
+            }
+          }
+        }
+      },
+      "text_result": {
+        "type": "StructuredText",
+        "config": {
+          "label": "textResult",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph"
         }
       },
       "link_project": {
