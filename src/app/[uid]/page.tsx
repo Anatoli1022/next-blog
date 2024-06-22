@@ -48,7 +48,6 @@ export default async function Page({ params }: { params: Params }) {
 
   // const comments = await supabaseComments
 
-
   const supabaseUser = createClientUser();
 
   const {
@@ -62,7 +61,8 @@ export default async function Page({ params }: { params: Params }) {
   //   .eq('published', true) // only fetch published comments
   //   .order('created_at', { ascending: true });
 
-  const { slices, title, publication_date, description, featured_image, link_project, link_git } = page.data;
+  const { slices, title, publication_date, description, featured_image, link_project, link_git, list_title, list } =
+    page.data;
 
   return (
     <div className='flex w-full max-w-3xl flex-col gap-16'>
@@ -86,7 +86,26 @@ export default async function Page({ params }: { params: Params }) {
           width={768}
           height={384}
         />
-        <RichText field={description} />
+
+        <div>
+          <RichText field={description} />
+
+          <div className='mt-5'>
+            <RichText field={list_title} />
+          </div>
+
+          <ul className='mt-6'>
+            {list.map((item) => {
+              return (
+                <li className='mt-4 flex flex-col gap-y-2 first-of-type:mt-0'>
+                  <RichText field={item.title} />
+                  <RichText field={item.text} />
+                  <RichText field={item.text2} />
+                </li>
+              );
+            })}
+          </ul>
+        </div>
         <div>
           <div>
             <PrismicNextLink field={link_project} className='text-lg font-semibold transition hover:text-indigo-400'>
