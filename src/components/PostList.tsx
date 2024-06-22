@@ -17,7 +17,7 @@ export default async function PostList() {
   });
 
   return (
-    <section className='grid w-full max-w-3xl grid-cols-1 gap-8'>
+    <section className='mt-5 grid w-full max-w-3xl grid-cols-1 gap-8'>
       {posts.map((post) => (
         <PostCard key={post.id} post={post} />
       ))}
