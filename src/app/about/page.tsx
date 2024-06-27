@@ -1,10 +1,8 @@
-
 import { Metadata } from "next";
 import { SliceZone } from "@prismicio/react";
 import * as prismic from "@prismicio/client";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
-
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -33,11 +31,9 @@ export default async function Index() {
     },
   });
 
-
   return (
-    <>
+    <div className='flex flex-col gap-5 mt-8'>
       <SliceZone slices={about.data.slices} components={components} />
-
-    </>
+    </div>
   );
 }
