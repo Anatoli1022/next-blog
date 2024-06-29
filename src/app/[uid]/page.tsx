@@ -78,14 +78,16 @@ export default async function Page({ params }: { params: Params }) {
             </div>
           </div>
         </div>
-        <PrismicNextImage
-          field={featured_image}
-          sizes='100vw'
-          className='max-h-[450px] w-full max-w-3xl rounded-xl object-cover'
-          fallbackAlt=''
-          width={768}
-          height={384}
-        />
+        <PrismicNextLink field={link_project}>
+          <PrismicNextImage
+            field={featured_image}
+            sizes='100vw'
+            className='max-h-[450px] w-full max-w-3xl rounded-xl object-cover'
+            fallbackAlt=''
+            width={768}
+            height={384}
+          />
+        </PrismicNextLink>
 
         <div>
           <RichText field={description} />

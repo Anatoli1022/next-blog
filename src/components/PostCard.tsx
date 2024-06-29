@@ -39,7 +39,9 @@ export const PostCard = ({ post }: { post: Content.BlogPostDocument }): JSX.Elem
             <PrismicText field={data.title} />
           </h2>
         </div>
-        <RichText field={data.description} />
+        <div className='line-clamp-4'>
+          <RichText field={data.description} />
+        </div>
       </div>
     </PrismicNextLink>
   );
