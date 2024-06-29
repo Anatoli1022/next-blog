@@ -18,7 +18,7 @@
             "label": "Title",
             "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "heading1"
+            "multi": "heading3,heading4,heading5,heading6"
           }
         },
         "description": {
@@ -28,14 +28,6 @@
             "placeholder": "",
             "allowTargetBlank": true,
             "multi": "paragraph,strong,em"
-          }
-        },
-        "image": {
-          "type": "Image",
-          "config": {
-            "label": "image",
-            "constraint": {},
-            "thumbnails": []
           }
         }
       },
