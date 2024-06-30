@@ -44,9 +44,9 @@ export const Navigation = async () => {
           </ul>
         </nav>
 
-        {user ? (
+        {user && user.email ? (
           <div className='flex'>
-            <div className='mr-4 flex items-center'>Hey, {user.email}!</div>
+            <div className='mr-4 flex items-center'>Hey, {user.email.replace(/@.*$/, "")}!</div>
             <form action={signOut}>
               <button className='border-xl text-foreground rounded-md border bg-indigo-400 px-4 py-1 text-lg font-normal text-white transition hover:bg-inherit hover:text-black'>
                 <span>Logout</span>
