@@ -26,9 +26,7 @@ export async function Comments({ id }: CommentsProps) {
           {comments.data.map((comment: Comment, index: number) => (
             <div className='mt-4 border p-6' key={index}>
               <div className='text-sm'>
-                {`Posted by ${comment.nickname.replace(/@.*$/, "")} on ${new Date(
-                  comment.created_at,
-                ).toLocaleTimeString("en-US", {
+                {`Posted by ${comment.nickname} on ${new Date(comment.created_at).toLocaleTimeString("en-US", {
                   year: "numeric",
                   month: "short",
                   day: "numeric",
