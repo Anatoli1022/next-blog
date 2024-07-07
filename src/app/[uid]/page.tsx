@@ -127,7 +127,13 @@ export default async function Page({ params }: { params: Params }) {
       <div>
         <Comments id={page.id} />
         {user ? (
-          <CommentForm id={page.id} uid={page.uid} revalidate={revalidate} user={user?.email} />
+          <CommentForm
+            id={page.id}
+            uid={page.uid}
+            revalidate={revalidate}
+            nickname={user.user_metadata.nickname}
+            email={user.email}
+          />
         ) : (
           <div className='mt-4'>
             <Link href='registration' className='text-lg font-semibold transition hover:text-indigo-400'>

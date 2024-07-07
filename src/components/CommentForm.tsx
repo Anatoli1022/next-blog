@@ -6,9 +6,10 @@ interface CommentsProps {
   uid: string;
   revalidate: (val: string) => void;
   text?: string;
-  user: string | undefined;
+  nickname: string | undefined;
+  email: string | undefined;
 }
-export function CommentForm({ id, uid, revalidate, user }: CommentsProps) {
+export function CommentForm({ id, uid, revalidate, nickname, email }: CommentsProps) {
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -17,7 +18,7 @@ export function CommentForm({ id, uid, revalidate, user }: CommentsProps) {
     setLoading(true);
     revalidate(`/${uid}`);
 
-    if (user) {
+    if (nickname) {
       await fetch(`/api/comments`, {
         method: "POST",
         headers: {
@@ -25,8 +26,8 @@ export function CommentForm({ id, uid, revalidate, user }: CommentsProps) {
         },
         body: JSON.stringify({
           post_id: id,
-          nickname: user,
-          email: user,
+          nickname,
+          email,
           comment,
           uid,
         }),
@@ -57,18 +58,7 @@ export function CommentForm({ id, uid, revalidate, user }: CommentsProps) {
           value={comment}
         />
       </div>
-      {/* <div className="input-group">
-          <input
-            id="comment"
-            onChange={(e) => setComment(e.target.value)}
-            placeholder="Your comment"
-            className="input"
-            value={comment}
-          />{" "}
-          <label htmlFor="comment" className="label">
-            Comment
-          </label>
-        </div> */}
+
       <button
         className='border-xl text-foreground mt-4 rounded-md border bg-indigo-400 px-4 py-1 text-lg font-normal text-white transition hover:bg-inherit hover:text-black disabled:cursor-not-allowed'
         type='submit'

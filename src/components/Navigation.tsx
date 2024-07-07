@@ -20,7 +20,7 @@ export const Navigation = async () => {
 
     const supabase = createClientUser();
     await supabase.auth.signOut({ scope: "local" });
-    return redirect("/registration");
+    return redirect("/login");
   };
 
   return (
@@ -44,9 +44,9 @@ export const Navigation = async () => {
           </ul>
         </nav>
 
-        {user && user.email ? (
+        {user && user.user_metadata.nickname ? (
           <div className='flex'>
-            <div className='mr-4 flex items-center'>Hey, {user.email.replace(/@.*$/, "")}!</div>
+            <div className='mr-4 flex items-center'>Hey, {user.user_metadata.nickname!}</div>
             <form action={signOut}>
               <button className='border-xl text-foreground rounded-md border bg-indigo-400 px-4 py-1 text-lg font-normal text-white transition hover:bg-inherit hover:text-black'>
                 <span>Logout</span>
@@ -55,7 +55,7 @@ export const Navigation = async () => {
           </div>
         ) : (
           <Link
-            href='/registration'
+            href='/login'
             className='border-xl text-foreground rounded-md border bg-indigo-400 px-4 py-1 text-lg font-normal text-white transition hover:bg-inherit hover:text-black'
           >
             Login
