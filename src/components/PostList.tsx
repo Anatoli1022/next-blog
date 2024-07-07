@@ -13,7 +13,7 @@ export default async function PostList() {
       next: { revalidate: 3600 },
     },
 
-    limit: 3,
+    // limit: 3,
   });
 
   return (
