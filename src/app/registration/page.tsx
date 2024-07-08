@@ -9,6 +9,11 @@ import { createClientUser } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 
 import RegistrationForm from "@/components/RegistrationForm";
+interface SignUpFormData {
+  nickname: string;
+  email: string;
+  password: string;
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -39,14 +44,11 @@ export default async function Index({ searchParams }: { searchParams: { message:
 
   // cookies();
 
-  const signUp = async (formData: FormData) => {
+  const signUp = async ({ nickname, email, password }: SignUpFormData) => {
     "use server";
     const supabase = createClientUser();
     const origin = headers().get("origin");
 
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    const nickname = formData.get("nickname") as string;
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
