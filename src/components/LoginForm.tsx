@@ -27,7 +27,6 @@ const LoginForm = ({ signIn, searchParams }: RegistrationFormProps) => {
       initialValues={{ email: "", password: "" }}
       validationSchema={validationSchema}
       onSubmit={(values: SignInFormData, { setSubmitting }) => {
-        console.log("Attempting sign in with:");
         signIn(values).finally(() => {
           setSubmitting(false);
         });
@@ -44,7 +43,6 @@ const LoginForm = ({ signIn, searchParams }: RegistrationFormProps) => {
             autoComplete='email'
             id='email'
             placeholder='you@example.com'
-            required
           />
           <ErrorMessage name='email' component='div' className='mt-1 text-red-600' />
 
