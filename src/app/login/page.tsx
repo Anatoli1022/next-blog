@@ -47,7 +47,7 @@ export default async function Index({ searchParams }: { searchParams: { message:
 
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
-      password
+      password,
     });
 
     if (error) {

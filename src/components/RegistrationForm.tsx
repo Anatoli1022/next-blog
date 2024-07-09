@@ -1,7 +1,7 @@
 "use client";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import validationSchema from "@/schema/schema";
+import { validationSchemaRegistration } from "@/schema/schema";
 import { useState } from "react";
 import { SubmitButton } from "./submit-button";
 import Image from "next/image";
@@ -27,7 +27,7 @@ const RegistrationForm = ({ signUp, searchParams }: RegistrationFormProps) => {
   return (
     <Formik
       initialValues={{ nickname: "", email: "", password: "" }}
-      validationSchema={validationSchema}
+      validationSchema={validationSchemaRegistration}
       onSubmit={(values: SignUpFormData, { setSubmitting }) => {
         signUp(values).finally(() => {
           setSubmitting(false);

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import validationSchema from "@/schema/schema";
+import { validationSchemaLogin } from "@/schema/schema";
 import Link from "next/link";
 import { SubmitButton } from "@/components/submit-button";
 import Image from "next/image";
@@ -25,7 +25,7 @@ const LoginForm = ({ signIn, searchParams }: RegistrationFormProps) => {
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
-      validationSchema={validationSchema}
+      validationSchema={validationSchemaLogin}
       onSubmit={(values: SignInFormData, { setSubmitting }) => {
         signIn(values).finally(() => {
           setSubmitting(false);
