@@ -1,54 +1,40 @@
 "use client";
-
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { validationSchemaRegistration } from "@/schema/schema";
 import { useState } from "react";
-import { SubmitButton } from "./submit-button";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { validationSchemaLogin } from "@/schema/schema";
+import Link from "next/link";
+import { SubmitButton } from "@/components/submit-button";
 import Image from "next/image";
 import imageShow from "@/assets/eye-password-show-svgrepo-com.svg";
 import imageHide from "@/assets/eye-password-hide-svgrepo-com.svg";
-interface SignUpFormData {
-  nickname: string;
+interface SignInFormData {
   email: string;
   password: string;
 }
 
 interface RegistrationFormProps {
-  signUp: (formData: SignUpFormData) => Promise<void>;
+  signIn: (formData: SignInFormData) => Promise<void>;
   searchParams?: { message?: string };
 }
 
-const RegistrationForm = ({ signUp, searchParams }: RegistrationFormProps) => {
+const LoginForm = ({ signIn, searchParams }: RegistrationFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
-
   return (
     <Formik
-      initialValues={{ nickname: "", email: "", password: "" }}
-      validationSchema={validationSchemaRegistration}
-      onSubmit={(values: SignUpFormData, { setSubmitting }) => {
-        signUp(values).finally(() => {
+      initialValues={{ email: "", password: "" }}
+      validationSchema={validationSchemaLogin}
+      onSubmit={(values: SignInFormData, { setSubmitting }) => {
+        signIn(values).finally(() => {
           setSubmitting(false);
         });
       }}
     >
       {({ isSubmitting }) => (
         <Form className='animate-in text-foreground flex w-full flex-1 flex-col justify-center'>
-          <label className='text-md' htmlFor='nickname'>
-            Nickname
-          </label>
-          <Field
-            className='mt-3 rounded-md border bg-inherit px-4 py-2'
-            name='nickname'
-            autoComplete='nickname'
-            id='nickname'
-            placeholder='Kabachok153'
-          />
-          <ErrorMessage name='nickname' component='div' className='mt-1 text-red-600' />
-
-          <label className='text-md mt-5' htmlFor='email'>
+          <label className='text-md' htmlFor='email'>
             Email
           </label>
           <Field
@@ -57,20 +43,19 @@ const RegistrationForm = ({ signUp, searchParams }: RegistrationFormProps) => {
             autoComplete='email'
             id='email'
             placeholder='you@example.com'
-            type='email'
           />
           <ErrorMessage name='email' component='div' className='mt-1 text-red-600' />
 
-          <div className='relative mt-5'>
+          <div className='relative mt-6'>
             <label className='text-md' htmlFor='password'>
               Password
             </label>
             <Field
-              className='mt-3 min-w-full rounded-md border bg-inherit px-4 py-2'
-              type={showPassword ? "text" : "password"}
               autoComplete='password'
               id='password'
               name='password'
+              className='mt-3 min-w-full rounded-md border bg-inherit px-4 py-2'
+              type={showPassword ? "text" : "password"}
               placeholder='••••••••'
             />
             <button
@@ -82,19 +67,25 @@ const RegistrationForm = ({ signUp, searchParams }: RegistrationFormProps) => {
             </button>
           </div>
           <ErrorMessage name='password' component='div' className='mt-1 text-red-600' />
-
+          <p className='mt-3 text-center'>
+            Don't have an account yet?
+            <Link href='/registration' className='px-1 text-indigo-400'>
+              Register
+            </Link>
+            here.
+          </p>
           <SubmitButton
-            className='text-foreground mt-6 rounded-md border bg-indigo-400 px-4 py-2 text-white transition hover:bg-inherit hover:text-black'
-            pendingText='Signing Up...'
             isSubmitting={isSubmitting}
+            className='text-foreground mt-6 rounded-md border bg-indigo-400 px-4 py-2 text-white transition hover:bg-inherit hover:text-black'
+            pendingText='Signing In...'
           >
-            Sign Up
+            Sign In
           </SubmitButton>
-          {searchParams?.message && <p className='text-center text-red-600'>{searchParams.message}</p>}
+          {searchParams?.message && <p className='mt-2 text-center text-red-600'>{searchParams.message}</p>}
         </Form>
       )}
     </Formik>
   );
 };
 
-export default RegistrationForm;
+export default LoginForm;
