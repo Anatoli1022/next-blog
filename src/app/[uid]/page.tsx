@@ -136,7 +136,7 @@ export default async function Page({ params }: { params: Params }) {
           />
         ) : (
           <div className='mt-4'>
-            <Link href='registration' className='text-lg font-semibold transition hover:text-indigo-400'>
+            <Link href='login' className='text-lg font-semibold transition hover:text-indigo-400'>
               Please Login for comment
             </Link>
           </div>

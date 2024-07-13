@@ -24,7 +24,7 @@ export async function Comments({ id }: CommentsProps) {
         <>
           <h4 className='text-lg'>What people are saying</h4>
           {comments.data.map((comment: Comment, index: number) => (
-            <div className='mt-4 border p-6' key={index}>
+            <div className='mt-4 rounded-xl border border-indigo-300 p-6' key={index}>
               <div className='text-sm'>
                 {`Posted by ${comment.nickname} on ${new Date(comment.created_at).toLocaleTimeString("en-US", {
                   year: "numeric",
@@ -37,7 +37,7 @@ export async function Comments({ id }: CommentsProps) {
           ))}
         </>
       ) : (
-        <p>There are no comments on this post yet, be the first!</p>
+        <p className='rounded-xl border border-indigo-300 p-3'>There are no comments on this post yet, be the first!</p>
       )}
     </div>
   );
