@@ -35,10 +35,8 @@ export default async function Index({ searchParams }: { searchParams: { message:
   };
 
   return (
-    <div>
-      <div className='mx-auto mt-4 w-full px-8 sm:max-w-md'>
-        <ForgotPassword confirmReset={confirmReset} />
-      </div>
+    <div className='flex w-full flex-1 flex-col justify-center px-8 sm:max-w-md'>
+      <ForgotPassword confirmReset={confirmReset} />
     </div>
   );
 }
