@@ -28,7 +28,7 @@ export default async function Index({ searchParams }: { searchParams: { message:
     const supabase = createClientUser();
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${origin}/reset-password`,
+      redirectTo: `https://next-blog-git-fix-forgot-password-anatoli1022s-projects.vercel.app/reset-password`,
     });
 
     if (error) {
