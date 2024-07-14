@@ -1,24 +1,23 @@
 "use client";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { validationSchemaResetPassword } from "@/schema/schema";
+import { validationSchemaForgotPassword } from "@/schema/schema";
 import { SubmitButton } from "@/components/submit-button";
 
-// interface ResetPasswordProps {
-//   confirmReset: (values: any, helpers: any) => void;
-// }
+interface ResetPasswordProps {
+  confirmReset: (email: { email: string }, helpers?: any) => any;
+}
 interface ForgotPassword {
   email: string;
 }
 
-const ForgotPassword= ({ confirmReset }: any) => {
+const ForgotPassword = ({ confirmReset }: ResetPasswordProps) => {
   return (
     <Formik
       initialValues={{ email: "" }}
-      validationSchema={validationSchemaResetPassword}
+      validationSchema={validationSchemaForgotPassword}
       onSubmit={(email: ForgotPassword, { setSubmitting }) => {
         confirmReset(email).finally(() => {
           setSubmitting(false);
-          console.log(email);
         });
       }}
     >
@@ -39,9 +38,9 @@ const ForgotPassword= ({ confirmReset }: any) => {
           <SubmitButton
             isSubmitting={isSubmitting}
             className='text-foreground mt-6 rounded-md border bg-indigo-400 px-4 py-2 text-white transition hover:bg-inherit hover:text-black'
-            pendingText='Отправка письма...'
+            pendingText='Sending...'
           >
-            Сбросить пароль
+            Reset your Password
           </SubmitButton>
         </Form>
       )}

@@ -1,7 +1,14 @@
+"use server";
 import { createClientUser } from "@/lib/supabase/server";
+import ResetPassword from "@/components/ResetPassword";
 import { redirect } from "next/navigation";
 
-export default async function ResetPassword({ searchParams }: { searchParams: { message: string; code: string } }) {
+interface resetPasswordProps {
+  password: string;
+  resetPassword: string;
+}
+
+export default async function Index({ searchParams }: { searchParams: { message: string; code: string } }) {
   const supabase = createClientUser();
 
   const {
@@ -12,10 +19,11 @@ export default async function ResetPassword({ searchParams }: { searchParams: { 
     return redirect("/");
   }
 
-  const resetPassword = async (formData: FormData) => {
+  const resetPassword = async (values: resetPasswordProps) => {
     "use server";
 
-    const password = formData.get("password") as string;
+    const { password } = values;
+
     const supabase = createClientUser();
 
     if (searchParams.code) {
@@ -40,39 +48,11 @@ export default async function ResetPassword({ searchParams }: { searchParams: { 
   };
 
   return (
-    <div>
-      <div className='mx-auto mt-4 w-full px-8 sm:max-w-md'>
-        <form
-          className='animate-in text-foreground flex w-full flex-1 flex-col justify-center gap-2'
-          action={resetPassword}
-        >
-          <label className='text-md' htmlFor='password'>
-            New Password
-          </label>
-          <input
-            className='mb-6 rounded-md border bg-inherit px-4 py-2'
-            type='password'
-            name='password'
-            placeholder='••••••••'
-            required
-          />
-          <label className='text-md' htmlFor='password'>
-            Confirm New Password
-          </label>
-          <input
-            className='mb-6 rounded-md border bg-inherit px-4 py-2'
-            type='password'
-            name='confirmPassword'
-            placeholder='••••••••'
-            required
-          />
-          <button className='text-foreground mb-2 rounded-md bg-indigo-700 px-4 py-2'>Reset</button>
-
-          {searchParams?.message && (
-            <p className='bg-foreground/10 text-foreground mt-4 p-4 text-center'>{searchParams.message}</p>
-          )}
-        </form>
-      </div>
+    <div className='flex w-full flex-1 flex-col justify-center px-8 sm:max-w-md'>
+      <ResetPassword resetPassword={resetPassword} />
+      {searchParams?.message && (
+        <p className='bg-foreground/10 text-foreground mt-4 p-4 text-center'>{searchParams.message}</p>
+      )}
     </div>
   );
 }
