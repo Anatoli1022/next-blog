@@ -27,6 +27,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/Comments.tsx"
-  ],
+, "src/app/reset/page.jsx"  ],
   "exclude": ["node_modules"]
 }
