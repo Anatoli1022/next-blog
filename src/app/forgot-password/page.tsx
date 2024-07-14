@@ -1,3 +1,4 @@
+'use server'
 import { headers } from "next/headers";
 import { createClientUser } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
@@ -36,7 +37,8 @@ export default async function Index({ searchParams }: { searchParams: { message:
 
   return (
     <div className='flex w-full flex-1 flex-col justify-center px-8 sm:max-w-md'>
-      <ForgotPassword confirmReset={confirmReset} />
+      <ForgotPassword confirmReset={confirmReset} /> 
+      <p className='text-foreground'>{searchParams.message}</p>
     </div>
   );
 }
