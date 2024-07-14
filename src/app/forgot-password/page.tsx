@@ -1,5 +1,5 @@
-'use server'
-import { headers } from "next/headers";
+"use server";
+
 import { createClientUser } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import ForgotPassword from "@/components/ForgotPassword";
@@ -20,7 +20,7 @@ export default async function Index({ searchParams }: { searchParams: { message:
   const confirmReset = async ({ email }: ForgotPasswordProps) => {
     "use server";
 
-    const origin = headers().get("origin");
+    const origin = window.location.origin;
 
     const supabase = createClientUser();
 
@@ -37,7 +37,7 @@ export default async function Index({ searchParams }: { searchParams: { message:
 
   return (
     <div className='flex w-full flex-1 flex-col justify-center px-8 sm:max-w-md'>
-      <ForgotPassword confirmReset={confirmReset} /> 
+      <ForgotPassword confirmReset={confirmReset} />
       <p className='text-foreground'>{searchParams.message}</p>
     </div>
   );
