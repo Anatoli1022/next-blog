@@ -45,7 +45,6 @@ const LoginForm = ({ signIn, searchParams }: RegistrationFormProps) => {
             placeholder='you@example.com'
           />
           <ErrorMessage name='email' component='div' className='mt-1 text-red-600' />
-
           <div className='relative mt-6'>
             <label className='text-md' htmlFor='password'>
               Password
@@ -67,21 +66,28 @@ const LoginForm = ({ signIn, searchParams }: RegistrationFormProps) => {
             </button>
           </div>
           <ErrorMessage name='password' component='div' className='mt-1 text-red-600' />
-          <p className='mt-3 text-center'>
-            Don't have an account yet?
-            <Link href='/registration' className='px-1 text-indigo-400'>
-              Register
-            </Link>
-            here.
-          </p>
+          <div className='text-center'>
+            <p className='mt-4 inline-block text-center'>
+              Don't have an account yet?
+              <Link href='/registration' className='px-1 text-indigo-400'>
+                Register
+              </Link>
+              here.
+            </p>
+            <p className='mt-2'>
+              <Link href='/forgot-password' className='px-1 text-center text-indigo-400'>
+                Forgot password?
+              </Link>
+            </p>
+          </div>
           <SubmitButton
             isSubmitting={isSubmitting}
-            className='text-foreground mt-6 rounded-md border bg-indigo-400 px-4 py-2 text-white transition hover:bg-inherit hover:text-black'
+            className='text-foreground mt-4 rounded-md border bg-indigo-400 px-4 py-2 text-white transition hover:bg-inherit hover:text-black'
             pendingText='Signing In...'
           >
             Sign In
-          </SubmitButton>
-          {searchParams?.message && <p className='mt-2 text-center'>{searchParams.message}</p>}
+          </SubmitButton>{" "}
+          {searchParams?.message && <p className='mt-2 text-center'>{searchParams.message} </p>}
         </Form>
       )}
     </Formik>
