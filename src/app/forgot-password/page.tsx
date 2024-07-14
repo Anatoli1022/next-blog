@@ -1,14 +1,10 @@
-"use server";
 import { headers } from "next/headers";
 import { createClientUser } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import ForgotPassword from "@/components/ForgotPassword";
-
 interface ForgotPasswordProps {
   email: string;
 }
-
-const revalidate = 0;
 export default async function Index({ searchParams }: { searchParams: { message: string } }) {
   const supabase = createClientUser();
 
@@ -28,7 +24,7 @@ export default async function Index({ searchParams }: { searchParams: { message:
     const supabase = createClientUser();
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `https://next-blog-ruby-eight.vercel.app/reset-password`,
+      redirectTo: `https://next-blog-ruby-eight.vercel.app/reset-password/${origin}`,
     });
 
     if (error) {
@@ -41,7 +37,6 @@ export default async function Index({ searchParams }: { searchParams: { message:
   return (
     <div className='flex w-full flex-1 flex-col justify-center px-8 sm:max-w-md'>
       <ForgotPassword confirmReset={confirmReset} />
-      <p className='text-foreground'>{searchParams.message}</p>
     </div>
   );
 }
