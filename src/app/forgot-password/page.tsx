@@ -19,14 +19,12 @@ export default async function Index({ searchParams }: { searchParams: { message:
   const confirmReset = async ({ email }: ForgotPasswordProps) => {
     "use server";
 
-    // const origin = headers().get("origin");
-    // console.log(origin, "abobus");
+    const origin = headers().get("origin");
 
     const supabase = createClientUser();
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      // redirectTo: `${origin}/reset-password`,
-      redirectTo: process.env.API_URL,
+      redirectTo: `${origin}/reset-password`,
     });
 
     if (error) {
