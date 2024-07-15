@@ -19,12 +19,14 @@ export default async function Index({ searchParams }: { searchParams: { message:
   const confirmReset = async ({ email }: ForgotPasswordProps) => {
     "use server";
 
-    const origin = headers().get("origin");
+    // const origin = headers().get("origin");
+    // console.log(origin, "abobus");
 
     const supabase = createClientUser();
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `https://next-blog-ruby-eight.vercel.app/reset-password/${origin}`,
+      // redirectTo: `${origin}/reset-password`,
+      redirectTo: process.env.API_URL,
     });
 
     if (error) {
