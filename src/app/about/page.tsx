@@ -27,12 +27,13 @@ export default async function Index() {
 
   const about = await client.getByUID("page", "about", {
     fetchOptions: {
-      next: { revalidate: 600 },
+      next: { revalidate: 6000 },
     },
   });
 
   return (
-    <div className='flex flex-col gap-5 mt-8'>
+    <div className='mt-8 flex flex-col gap-5'>
+      {about.data.meta_title}
       <SliceZone slices={about.data.slices} components={components} />
     </div>
   );
