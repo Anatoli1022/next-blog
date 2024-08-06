@@ -32,8 +32,7 @@ export default async function Index() {
   });
 
   return (
-    <div className='mt-8 flex flex-col gap-5'>
-      {about.data.meta_title}
+    <div className='flex flex-col gap-5'>
       <SliceZone slices={about.data.slices} components={components} />
     </div>
   );
