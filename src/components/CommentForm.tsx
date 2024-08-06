@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { SubmitButton } from "./submit-button";
 
 interface CommentsProps {
   id: string;
@@ -59,13 +60,13 @@ export function CommentForm({ id, uid, revalidate, nickname, email }: CommentsPr
         />
       </div>
 
-      <button
+      <SubmitButton
+        isSubmitting={loading}
+        pendingText='Sending...'
         className='border-xl text-foreground mt-4 rounded-md border bg-indigo-400 px-4 py-1 text-lg font-normal text-white transition hover:bg-inherit hover:text-black disabled:cursor-not-allowed'
-        type='submit'
-        disabled={loading}
       >
-        {loading ? "Loading..." : "Send comment"}
-      </button>
+        Send comment
+      </SubmitButton>
     </form>
   );
 }
