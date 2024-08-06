@@ -145,7 +145,7 @@ export default async function Page({ params }: { params: Params }) {
 
       <div>
         <h2 className='text-3xl font-bold'>Recommended Posts</h2>
-        <PostList />
+        <PostList limitPosts={3} />
       </div>
     </div>
   );

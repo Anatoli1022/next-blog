@@ -1,7 +1,11 @@
 import { createClient } from "@/prismicio";
 import { PostCard } from "./PostCard";
 
-export default async function PostList() {
+interface PostListProps {
+  limitPosts?: number | undefined;
+}
+
+export default async function PostList({ limitPosts }: PostListProps) {
   const client = createClient();
 
   const posts = await client.getAllByType("blog_post", {
@@ -13,11 +17,11 @@ export default async function PostList() {
       next: { revalidate: 3600 },
     },
 
-    // limit: 3,
+    limit: limitPosts,
   });
 
   return (
-    <section className='mt-5 grid w-full max-w-3xl grid-cols-1 gap-8'>
+    <section className='grid w-full max-w-3xl grid-cols-1 gap-8'>
       {posts.map((post) => (
         <PostCard key={post.id} post={post} />
       ))}
