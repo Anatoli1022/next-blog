@@ -1,5 +1,4 @@
 import { isFilled } from "@prismicio/client";
-
 import { createClient } from "@/prismicio";
 import { createClientUser } from "@/lib/supabase/server";
 import { PrismicNextLink } from "@prismicio/next";
