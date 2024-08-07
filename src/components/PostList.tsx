@@ -1,11 +1,7 @@
 import { createClient } from "@/prismicio";
 import { PostCard } from "./PostCard";
 
-interface PostListProps {
-  limitPosts?: number | undefined;
-}
-
-export default async function PostList({ limitPosts }: PostListProps) {
+export default async function PostList() {
   const client = createClient();
 
   const posts = await client.getAllByType("blog_post", {
@@ -17,7 +13,7 @@ export default async function PostList({ limitPosts }: PostListProps) {
       next: { revalidate: 3600 },
     },
 
-    limit: limitPosts,
+    limit: 3,
   });
 
   return (
