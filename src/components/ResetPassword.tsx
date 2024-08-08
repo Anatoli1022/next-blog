@@ -1,11 +1,12 @@
 "use client";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { validationSchemaResetPassword } from "@/schema/schema";
-import { SubmitButton } from "@/components/Submit-button";
+import { SubmitButton } from "./Submit-button";
 import { useState } from "react";
 import Image from "next/image";
 import imageShow from "@/assets/eye-password-show-svgrepo-com.svg";
 import imageHide from "@/assets/eye-password-hide-svgrepo-com.svg";
+
 
 interface ResetPasswordProps {
   resetPassword: (helpers?: any) => any;

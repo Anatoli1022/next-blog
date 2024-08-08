@@ -1,7 +1,8 @@
 "use client";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { validationSchemaForgotPassword } from "@/schema/schema";
-import { SubmitButton } from "@/components/Submit-button";
+import { SubmitButton } from "./Submit-button";
+
 
 interface ResetPasswordProps {
   confirmReset: (email: { email: string }, helpers?: any) => any;
