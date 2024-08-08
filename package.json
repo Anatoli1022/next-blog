@@ -19,6 +19,8 @@
     "@prismicio/react": "^2.7.3",
     "@supabase/ssr": "^0.3.0",
     "@supabase/supabase-js": "^2.42.4",
+    "flowbite": "^2.5.1",
+    "flowbite-react": "^0.10.1",
     "formik": "^2.4.6",
     "next": "^14.2.3",
     "prettier-plugin-tailwindcss": "^0.6.3",
