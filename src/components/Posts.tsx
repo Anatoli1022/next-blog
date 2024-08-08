@@ -3,12 +3,14 @@ import { createClient } from "@/prismicio";
 import { useEffect, useState } from "react";
 import { PostCard } from "./PostCard";
 import Pagination from "./Pagination";
+import Skeleton from "./Skeleton";
 
 const PostList = () => {
   const client = createClient();
   const [posts, setPosts] = useState<any[]>([]);
   const [totalPages, setTotalPages] = useState<number>(1);
-  const [thisPage, setThisPage] = useState(1);
+  const [thisPage, setThisPage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -24,11 +26,12 @@ const PostList = () => {
           pageSize: 3,
           page: thisPage,
         });
-
         setPosts(response.results);
         setTotalPages(response.total_pages);
       } catch (error) {
         console.error("Error fetching posts:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -46,13 +49,22 @@ const PostList = () => {
       setThisPage((prevState) => prevState + 1);
     }
   };
-
+  console.log(loading);
   return (
-    <section className='grid w-full max-w-3xl grid-cols-1 gap-8'>
-      {posts.map((post) => (
-        <PostCard key={post.id} post={post} />
-      ))}
-
+    <section className='flex w-full max-w-3xl flex-col gap-8 pb-4'>
+      {(loading && (
+        <>
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+        </>
+      )) || (
+        <>
+          {posts.map((post) => (
+            <PostCard key={post.id} post={post} />
+          ))}
+        </>
+      )}
       <Pagination
         handlePreviousPage={handlePreviousPage}
         thisPage={thisPage}
