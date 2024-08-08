@@ -3,7 +3,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { validationSchemaRegistration } from "@/schema/schema";
 import { useState } from "react";
-import { SubmitButton } from "./submit-button";
+import { SubmitButton } from "./Submit-button";
 import Image from "next/image";
 import imageShow from "@/assets/eye-password-show-svgrepo-com.svg";
 import imageHide from "@/assets/eye-password-hide-svgrepo-com.svg";

@@ -1,7 +1,7 @@
 "use client";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { validationSchemaResetPassword } from "@/schema/schema";
-import { SubmitButton } from "@/components/submit-button";
+import { SubmitButton } from "@/components/Submit-button";
 import { useState } from "react";
 import Image from "next/image";
 import imageShow from "@/assets/eye-password-show-svgrepo-com.svg";

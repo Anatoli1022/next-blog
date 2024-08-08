@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { SubmitButton } from "./submit-button";
+import { SubmitButton } from "./Submit-button";
 
 interface CommentsProps {
   id: string;
