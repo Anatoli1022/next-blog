@@ -2,7 +2,7 @@ import React from "react";
 
 const Pagination = ({ handlePreviousPage, thisPage, totalPages, handleNextPage }: any) => {
   return (
-    <div className=' flex justify-between'>
+    <div className=' flex justify-between gap-x-2'>
       <button
         onClick={handlePreviousPage}
         disabled={thisPage === 1}
