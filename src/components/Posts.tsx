@@ -49,7 +49,7 @@ const PostList = () => {
       setThisPage((prevState) => prevState + 1);
     }
   };
-  console.log(loading);
+
   return (
     <section className='flex w-full max-w-3xl flex-col gap-8 pb-4'>
       {(loading && (
