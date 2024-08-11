@@ -61,8 +61,19 @@ export default async function Page({ params }: { params: Params }) {
   //   .eq('published', true) // only fetch published comments
   //   .order('created_at', { ascending: true });
 
-  const { slices, title, publication_date, description, featured_image, link_project, link_git, list_title, list } =
-    page.data;
+  const {
+    slices,
+    title,
+    publication_date,
+    description,
+    featured_image,
+    link_project,
+    link_git,
+    list_title,
+    list,
+    image_git,
+    image_web,
+  } = page.data;
 
   return (
     <div className='flex w-full max-w-3xl flex-col gap-16'>
@@ -108,18 +119,14 @@ export default async function Page({ params }: { params: Params }) {
             })}
           </ul>
         </div>
-        <div>
-          <div>
-            <PrismicNextLink field={link_project} className='text-lg font-semibold transition hover:text-indigo-400'>
-              Link to the website
-            </PrismicNextLink>
-          </div>
+        <div className='flex gap-x-5'>
+          <PrismicNextLink field={link_project}>
+            <PrismicNextImage field={image_web} width={42} height={42} />
+          </PrismicNextLink>
 
-          <div>
-            <PrismicNextLink field={link_git} className='text-lg font-semibold transition hover:text-indigo-400'>
-              Link to the project in git
-            </PrismicNextLink>
-          </div>
+          <PrismicNextLink field={link_git}>
+            <PrismicNextImage field={image_git} width={42} height={42} />
+          </PrismicNextLink>
         </div>
       </section>
 
