@@ -13,6 +13,28 @@
 						}
 					}
 				]
+			},
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Mollit in incididunt aute deserunt in ullamco minim officia aute qui velit."
+						}
+					}
+				]
+			},
+			"text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ad irure non qui. Do ea velit ipsum commodo consequat excepteur cupidatat anim dolor anim eiusmod nisi sunt. Duis nostrud nulla aliqua anim est culpa fugiat voluptate dolore nisi deserunt velit est in eu."
+						}
+					}
+				]
 			}
 		},
 		"items": [
@@ -20,31 +42,39 @@
 				"__TYPE__": "GroupItemContent",
 				"value": [
 					[
-						"title",
+						"image",
 						{
-							"__TYPE__": "StructuredTextContent",
-							"value": [
-								{
-									"type": "heading2",
-									"content": {
-										"text": "Whatever"
-									}
-								}
-							]
+							"origin": {
+								"id": "main",
+								"url": "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea",
+								"width": 3500,
+								"height": 2338
+							},
+							"url": "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea",
+							"width": 3500,
+							"height": 2338,
+							"edit": {
+								"zoom": 1,
+								"crop": {
+									"x": 0,
+									"y": 0
+								},
+								"background": "transparent"
+							},
+							"credits": null,
+							"alt": null,
+							"__TYPE__": "ImageContent",
+							"thumbnails": {}
 						}
 					],
 					[
-						"text",
+						"link",
 						{
-							"__TYPE__": "StructuredTextContent",
-							"value": [
-								{
-									"type": "paragraph",
-									"content": {
-										"text": "Ipsum nisi nostrud in dolore tempor ut aliqua sint velit. Non ex irure nisi et dolore minim aute occaecat."
-									}
-								}
-							]
+							"__TYPE__": "LinkContent",
+							"value": {
+								"__TYPE__": "ExternalLink",
+								"url": "http://twitter.com"
+							}
 						}
 					]
 				]

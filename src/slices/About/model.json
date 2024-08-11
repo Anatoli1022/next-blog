@@ -20,16 +20,14 @@
             "allowTargetBlank": true,
             "multi": "heading1"
           }
-        }
-      },
-      "items": {
+        },
         "title": {
           "type": "StructuredText",
           "config": {
             "label": "title",
             "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "heading2,heading3,heading4"
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
           }
         },
         "text": {
@@ -38,7 +36,25 @@
             "label": "text",
             "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "paragraph"
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        }
+      },
+      "items": {
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "link",
+            "placeholder": "",
+            "select": null
           }
         }
       }

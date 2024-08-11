@@ -115,6 +115,22 @@
           "select": null
         }
       },
+      "image_git": {
+        "type": "Image",
+        "config": {
+          "label": "image_git",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "image_web": {
+        "type": "Image",
+        "config": {
+          "label": "image_web",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

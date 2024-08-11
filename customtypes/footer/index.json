@@ -1,0 +1,36 @@
+{
+  "format": "custom",
+  "id": "footer",
+  "label": "Footer",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "list": {
+        "type": "Group",
+        "config": {
+          "label": "list",
+          "repeat": true,
+          "fields": {
+            "item_link": {
+              "type": "Link",
+              "config": {
+                "label": "item_link",
+                "placeholder": "",
+                "select": null
+              }
+            },
+            "item_image": {
+              "type": "Image",
+              "config": {
+                "label": "item_image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
