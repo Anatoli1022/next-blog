@@ -96,7 +96,7 @@ export default async function Page({ params }: { params: Params }) {
             className='max-h-[450px] w-full max-w-3xl rounded-xl object-cover'
             fallbackAlt=''
             width={768}
-            height={384}
+            height={450}
           />
         </PrismicNextLink>
 
