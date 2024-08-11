@@ -2,6 +2,7 @@ import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import "./styles.css";
 import { Navigation } from "@/components/Navigation";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -14,9 +15,10 @@ export default function RootLayout({
       </head>
       <body className='ml-auto mr-auto max-w-screen-xl bg-gray-50'>
         <Navigation />
-        <div className='mt-8 flex min-h-screen w-full max-w-7xl flex-col items-center gap-20 px-2 text-slate-700'>
+        <div className='mt-8 flex w-full max-w-7xl flex-col items-center gap-20 px-2 text-slate-700'>
           {children} <PrismicPreview repositoryName={repositoryName} />
         </div>
+       
       </body>
     </html>
   );
