@@ -86,6 +86,7 @@ export default async function Page({ params }: { params: Params }) {
             fallbackAlt=''
             width={768}
             height={450}
+          title="link to the project's web page"
           />
         </PrismicNextLink>
 
