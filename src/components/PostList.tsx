@@ -18,6 +18,7 @@ export default async function PostList() {
 
   return (
     <section className='flex w-full max-w-3xl flex-col gap-8'>
+      <h2 className='text-3xl font-bold'>Recommended Posts</h2>
       {posts.map((post) => (
         <PostCard key={post.id} post={post} />
       ))}
