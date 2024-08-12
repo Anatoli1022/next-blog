@@ -1,15 +1,13 @@
 "use server";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-// import { SliceZone } from "@prismicio/react";
+import { SliceZone } from "@prismicio/react";
 import * as prismic from "@prismicio/client";
 import { createClient } from "@/prismicio";
-// import { components } from "@/slices";
+import { components } from "@/slices";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { RichText } from "@/components/RichText";
 import { Comments } from "@/components/Comments";
-// import { supabaseComments } from '@/lib/supabase/client';
-
 import { CommentForm } from "@/components/CommentForm";
 import { revalidatePath } from "next/cache";
 import { createClientUser } from "@/lib/supabase/server";
@@ -46,20 +44,11 @@ export default async function Page({ params }: { params: Params }) {
 
   const page = await client.getByUID("blog_post", params.uid).catch(() => notFound());
 
-  // const comments = await supabaseComments
-
   const supabaseUser = createClientUser();
 
   const {
     data: { user },
   } = await supabaseUser.auth.getUser();
-
-  // const comments = await supabase
-  //   .from('comments')
-  //   .select('post_id, nickname, payload, created_at, id, published, email')
-  //   .eq('post_id', page.id)
-  //   .eq('published', true) // only fetch published comments
-  //   .order('created_at', { ascending: true });
 
   const {
     slices,
@@ -121,16 +110,16 @@ export default async function Page({ params }: { params: Params }) {
         </div>
         <div className='flex gap-x-5'>
           <PrismicNextLink field={link_project}>
-            <PrismicNextImage field={image_web} width={42} height={42} />
+            <PrismicNextImage field={image_web} width={42} height={42} title="link to the project's web page" />
           </PrismicNextLink>
 
           <PrismicNextLink field={link_git}>
-            <PrismicNextImage field={image_git} width={42} height={42} />
+            <PrismicNextImage field={image_git} width={42} height={42} title="link to the project's github" />
           </PrismicNextLink>
         </div>
       </section>
 
-      {/* <SliceZone slices={slices} components={components} /> */}
+      <SliceZone slices={slices} components={components} />
       <div>
         <Comments id={page.id} />
         {user ? (
@@ -150,10 +139,7 @@ export default async function Page({ params }: { params: Params }) {
         )}
       </div>
 
-      <div>
-        <h2 className='text-3xl font-bold'>Recommended Posts</h2>
-        <PostList />
-      </div>
+      <PostList />
     </div>
   );
 }
