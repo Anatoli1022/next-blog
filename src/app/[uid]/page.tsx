@@ -77,17 +77,28 @@ export default async function Page({ params }: { params: Params }) {
           </div>
         </div>
 
-        <PrismicNextLink field={link_project}>
-          <PrismicNextImage
-            field={featured_image}
-            sizes='100vw'
-            className='max-h-[450px] w-full max-w-3xl rounded-xl object-cover'
-            fallbackAlt=''
-            width={768}
-            height={450}
-            title="link to the project's web page"
-          />
-        </PrismicNextLink>
+        <div>
+          <PrismicNextLink field={link_project}>
+            <PrismicNextImage
+              field={featured_image}
+              sizes='100vw'
+              className='max-h-[450px] w-full max-w-3xl rounded-xl object-cover'
+              fallbackAlt=''
+              width={768}
+              height={450}
+              title="link to the project's web page"
+            />
+          </PrismicNextLink>
+          <ul className='mt-6 flex flex-wrap justify-center gap-2'>
+            {page.tags.map((item, i) => {
+              return (
+                <li key={i} className='rounded-2xl bg-indigo-300 px-2 py-1 text-xs'>
+                  <span>{item}</span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
 
         <div>
           <RichText field={description} />
