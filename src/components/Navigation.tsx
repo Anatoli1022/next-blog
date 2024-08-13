@@ -24,24 +24,22 @@ export const Navigation = async () => {
 
   return (
     <header className='px-2 py-5'>
-      <div className='flex items-center justify-between'>
-        <nav>
-          <ul className='flex gap-x-6'>
-            {isFilled.group(navigation.data.menu_items) &&
-              navigation.data.menu_items.map((item) => {
-                return (
-                  <li key={item.label}>
-                    <PrismicNextLink
-                      field={item.link}
-                      className='text-lg font-normal text-black transition hover:text-indigo-400'
-                    >
-                      {item.label}
-                    </PrismicNextLink>
-                  </li>
-                );
-              })}
-          </ul>
-        </nav>
+      <nav className='flex items-center justify-between'>
+        <ul className='flex gap-x-6'>
+          {isFilled.group(navigation.data.menu_items) &&
+            navigation.data.menu_items.map((item) => {
+              return (
+                <li key={item.label}>
+                  <PrismicNextLink
+                    field={item.link}
+                    className='text-lg font-normal text-black transition hover:text-indigo-400'
+                  >
+                    {item.label}
+                  </PrismicNextLink>
+                </li>
+              );
+            })}
+        </ul>
 
         {user && user.user_metadata.nickname ? (
           <div className='flex'>
@@ -60,7 +58,7 @@ export const Navigation = async () => {
             Login
           </Link>
         )}
-      </div>
+      </nav>
     </header>
   );
 };

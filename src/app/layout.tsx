@@ -13,12 +13,11 @@ export default function RootLayout({
       <head>
         <link rel='icon' type='image/png' sizes='any' href='https://prismic.io/favicon.ico' />
       </head>
-      <body className='ml-auto mr-auto max-w-screen-xl bg-gray-50'>
+      <body className='ml-auto mr-auto max-w-7xl bg-gray-50'>
         <Navigation />
-        <div className='mt-8 flex w-full max-w-7xl flex-col items-center gap-20 px-2 text-slate-700'>
+        <div className='mt-8 flex flex-col items-center gap-20 px-2 text-slate-700'>
           {children} <PrismicPreview repositoryName={repositoryName} />
         </div>
-       
       </body>
     </html>
   );
