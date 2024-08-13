@@ -65,19 +65,18 @@ export default async function Page({ params }: { params: Params }) {
   } = page.data;
 
   return (
-    <div className='flex w-full max-w-3xl flex-col gap-16'>
-      <section className='flex flex-col gap-12'>
-        <div>
-          <div className='text-center'>
-            <p className='m-auto w-min border-b-2 pb-1 opacity-75'>
-              {new Date(publication_date || "").toLocaleDateString()}
-            </p>
+    <div className='flex w-full max-w-3xl flex-col gap-16 md:gap-12'>
+      <section className='flex flex-col gap-12 md:gap-6'>
+        <div className='text-center'>
+          <p className='m-auto w-min border-b-2 pb-1 opacity-75'>
+            {new Date(publication_date || "").toLocaleDateString()}
+          </p>
 
-            <div className='mb-3 mt-5'>
-              <RichText field={title} />
-            </div>
+          <div className='mt-5'>
+            <RichText field={title} />
           </div>
         </div>
+
         <PrismicNextLink field={link_project}>
           <PrismicNextImage
             field={featured_image}
@@ -86,7 +85,7 @@ export default async function Page({ params }: { params: Params }) {
             fallbackAlt=''
             width={768}
             height={450}
-          title="link to the project's web page"
+            title="link to the project's web page"
           />
         </PrismicNextLink>
 
