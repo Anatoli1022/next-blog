@@ -89,7 +89,7 @@ export default async function Page({ params }: { params: Params }) {
               title="link to the project's web page"
             />
           </PrismicNextLink>
-          <ul className='mt-6 flex flex-wrap justify-center gap-2'>
+          <ul className='mt-6 flex flex-wrap justify-center gap-2 md:mt-4'>
             {page.tags.map((item, i) => {
               return (
                 <li key={i} className='rounded-2xl bg-indigo-300 px-2 py-1 text-xs'>
