@@ -71,7 +71,7 @@ export default async function Index({ searchParams }: { searchParams: { message:
     <>
       <SliceZone slices={registration.data.slices} components={components} />
 
-      <div className='flex w-full flex-1 flex-col justify-center px-8 sm:max-w-md'>
+      <div className='flex w-full max-w-lg flex-1 flex-col justify-center px-8'>
         <RegistrationForm signUp={signUp} searchParams={searchParams} />
       </div>
     </>

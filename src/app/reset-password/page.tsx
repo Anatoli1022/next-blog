@@ -48,7 +48,7 @@ export default async function Index({ searchParams }: { searchParams: { message:
   };
 
   return (
-    <div className='flex w-full flex-1 flex-col justify-center px-8 sm:max-w-md'>
+    <div className='flex w-full max-w-lg flex-1 flex-col justify-center px-8'>
       <ResetPassword resetPassword={resetPassword} />
       {searchParams?.message && (
         <p className='bg-foreground/10 text-foreground mt-4 p-4 text-center'>{searchParams.message}</p>

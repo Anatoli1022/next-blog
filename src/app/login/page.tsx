@@ -62,7 +62,7 @@ export default async function Index({ searchParams }: { searchParams: { message:
   return (
     <>
       <SliceZone slices={login.data.slices} components={components} />
-      <div className='flex w-full flex-1 flex-col justify-center px-8 sm:max-w-md'>
+      <div className='flex w-full max-w-lg flex-1 flex-col justify-center px-8'>
         <LoginForm signIn={signIn} searchParams={searchParams} />
       </div>
     </>
