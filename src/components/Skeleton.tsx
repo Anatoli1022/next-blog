@@ -4,7 +4,7 @@ const Skeleton = () => {
       role='status'
       className='col-span-2 grid w-full animate-pulse grid-cols-2 items-center gap-10 border-b border-solid border-gray-200 pb-3 last:border-none rtl:space-x-reverse'
     >
-      <div className='flex h-48 w-full max-w-[364px] items-center justify-center rounded-xl bg-gray-300 object-cover sm:w-96 dark:bg-gray-700'>
+      <div className='flex h-48 w-full max-w-[364px] items-center justify-center rounded-xl bg-gray-300 object-cover dark:bg-gray-700 sm:w-96'>
         <svg
           className='h-10 w-10 text-gray-200 dark:text-gray-600'
           aria-hidden='true'

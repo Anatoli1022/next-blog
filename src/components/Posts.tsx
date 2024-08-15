@@ -51,7 +51,7 @@ const PostList = () => {
   };
 
   return (
-    <section className='flex w-full max-w-3xl flex-col gap-8 pb-4 md:gap-6'>
+    <section className='flex flex-col gap-8 pb-4 md:gap-6'>
       {(loading && (
         <>
           <Skeleton />

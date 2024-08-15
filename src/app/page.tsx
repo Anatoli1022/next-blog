@@ -33,7 +33,7 @@ export default async function Index() {
   });
 
   return (
-    <div className='flex flex-col gap-5'>
+    <div className='flex w-full max-w-3xl flex-col gap-5'>
       <SliceZone slices={home.data.slices} components={components} />
       <Posts />
     </div>
