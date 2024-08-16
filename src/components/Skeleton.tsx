@@ -2,9 +2,9 @@ const Skeleton = () => {
   return (
     <div
       role='status'
-      className='col-span-2 grid w-full animate-pulse grid-cols-2 items-center gap-10 border-b border-solid border-gray-200 pb-3 last:border-none rtl:space-x-reverse'
+      className='col-span-2 grid w-full animate-pulse grid-cols-2 items-center gap-10 border-b border-solid border-gray-200 pb-3 last:border-none md:gap-4 rtl:space-x-reverse'
     >
-      <div className='flex h-48 w-full max-w-[364px] items-center justify-center rounded-xl bg-gray-300 object-cover dark:bg-gray-700 sm:w-96'>
+      <div className='flex h-48 w-full items-center justify-center rounded-xl bg-gray-300 object-cover dark:bg-gray-700 md:h-36'>
         <svg
           className='h-10 w-10 text-gray-200 dark:text-gray-600'
           aria-hidden='true'
@@ -16,9 +16,9 @@ const Skeleton = () => {
         </svg>
       </div>
       <div className='flex w-full flex-col gap-5'>
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4 md:gap-2'>
           <div className='h-2.5 w-12 rounded-full bg-gray-200 dark:bg-gray-700'></div>
-          <div className='flex flex-wrap gap-3'>
+          <div className='flex flex-wrap gap-3 md:hidden'>
             <div className='h-5 w-14 rounded-full bg-gray-200 dark:bg-gray-700'></div>
             <div className='h-5 w-14 rounded-full bg-gray-200 dark:bg-gray-700'></div>
             <div className='h-5 w-14 rounded-full bg-gray-200 dark:bg-gray-700'></div>
@@ -29,7 +29,7 @@ const Skeleton = () => {
           <div className='h-2.5 rounded-full bg-gray-200 dark:bg-gray-700'></div>
           <div className='mt-3 h-2.5 rounded-full bg-gray-200 dark:bg-gray-700'></div>
           <div className='mt-3 h-2.5 rounded-full bg-gray-200 dark:bg-gray-700'></div>
-          <div className='mt-3 h-2.5 rounded-full bg-gray-200 dark:bg-gray-700'></div>
+          <div className='mt-3 h-2.5 rounded-full bg-gray-200 dark:bg-gray-700 md:hidden'></div>
         </div>
       </div>
       <span className='sr-only'>Loading...</span>
