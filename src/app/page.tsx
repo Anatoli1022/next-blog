@@ -5,6 +5,14 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import Posts from "@/components/Posts";
 
+export async function generateStaticParams() {
+  const client = createClient();
+  const pages = await client.getAllByType("page");
+
+  return pages.map((page) => ({
+    uid: page.uid,
+  }));
+}
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
   const home = await client.getByUID("page", "home");
@@ -28,7 +36,7 @@ export default async function Index() {
 
   const home = await client.getByUID("page", "home", {
     fetchOptions: {
-      next: { revalidate: 3600 }, 
+      next: { revalidate: 3600 },
     },
   });
 
