@@ -23,12 +23,29 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+export async function getStaticProps() {
+  const client = createClient();
+
+  const home = await client.getByUID("page", "home", {
+    fetchOptions: {
+      next: { revalidate: 3600 },
+    },
+  });
+
+  return {
+    props: {
+      home,
+    },
+    revalidate: 3600,
+  };
+}
+
 export default async function Index() {
   const client = createClient();
 
   const home = await client.getByUID("page", "home", {
     fetchOptions: {
-      next: { revalidate: 0 },
+      next: { revalidate: 3600 },
     },
   });
 
