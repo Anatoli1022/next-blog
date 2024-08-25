@@ -36,7 +36,7 @@ const PostList = () => {
     };
 
     fetchPosts();
-  }, [client, thisPage]);
+  }, [thisPage]);
 
   const handlePreviousPage = () => {
     if (thisPage > 1) {

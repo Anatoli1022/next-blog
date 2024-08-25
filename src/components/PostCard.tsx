@@ -19,6 +19,7 @@ export const PostCard = ({ post }: { post: Content.BlogPostDocument }): JSX.Elem
         width={384}
         height={240}
         fallbackAlt=''
+        loading='eager'
       />
       <div className='flex flex-col gap-3 md:gap-2'>
         <div className='flex flex-col gap-2'>
