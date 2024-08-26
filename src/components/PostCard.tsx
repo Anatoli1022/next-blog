@@ -15,7 +15,7 @@ export const PostCard = ({ post }: { post: Content.BlogPostDocument }): JSX.Elem
       <PrismicNextImage
         field={data.featured_image}
         sizes='100vw'
-        className='max-h-60 w-full max-w-sm rounded-xl object-cover'
+        className='w-full max-w-sm rounded-xl object-cover'
         width={384}
         height={240}
         fallbackAlt=''
@@ -28,13 +28,11 @@ export const PostCard = ({ post }: { post: Content.BlogPostDocument }): JSX.Elem
             {new Date(data?.publication_date || "").toLocaleDateString()}
           </p>
           <ul className='flex flex-wrap gap-2 md:hidden'>
-            {post.tags.map((item, i) => {
-              return (
-                <li key={i} className='rounded-2xl bg-indigo-300 px-2 py-1 text-xs'>
-                  <span>{item}</span>
-                </li>
-              );
-            })}
+            {post.tags.map((item, i) => (
+              <li key={i} className='rounded-2xl bg-indigo-300 px-2 py-1 text-xs'>
+                <span>{item}</span>
+              </li>
+            ))}
           </ul>
 
           <h2 className='text-2xl font-bold md:-order-1'>
