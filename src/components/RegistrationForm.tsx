@@ -5,8 +5,8 @@ import { validationSchemaRegistration } from "@/schema/schema";
 import { useState } from "react";
 import { SubmitButton } from "./Submit-button";
 import Image from "next/image";
-import imageShow from "@/assets/eye-password-show-svgrepo-com.svg";
-import imageHide from "@/assets/eye-password-hide-svgrepo-com.svg";
+import imageShow from "@/assets/eye-show.svg";
+import imageHide from "@/assets/eye-hide.svg";
 interface SignUpFormData {
   nickname: string;
   email: string;

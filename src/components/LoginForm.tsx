@@ -5,8 +5,8 @@ import { validationSchemaLogin } from "@/schema/schema";
 import Link from "next/link";
 import { SubmitButton } from "./Submit-button";
 import Image from "next/image";
-import imageShow from "@/assets/eye-password-show-svgrepo-com.svg";
-import imageHide from "@/assets/eye-password-hide-svgrepo-com.svg";
+import imageShow from "@/assets/eye-show.svg";
+import imageHide from "@/assets/eye-hide.svg";
 
 interface SignInFormData {
   email: string;

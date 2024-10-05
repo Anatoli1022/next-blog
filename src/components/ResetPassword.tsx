@@ -4,9 +4,8 @@ import { validationSchemaResetPassword } from "@/schema/schema";
 import { SubmitButton } from "./Submit-button";
 import { useState } from "react";
 import Image from "next/image";
-import imageShow from "@/assets/eye-password-show-svgrepo-com.svg";
-import imageHide from "@/assets/eye-password-hide-svgrepo-com.svg";
-
+import imageShow from "@/assets/eye-show.svg";
+import imageHide from "@/assets/eye-hide.svg";
 
 interface ResetPasswordProps {
   resetPassword: (helpers?: any) => any;
